@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+
+<div id="client_image">
+  <%= image_tag @client_image.photo_url.to_s %>
+</div>
+<div class="clear"></div>
+
+
+<%= link_to 'Edit', edit_client_image_path(@client_image) %> |
+<%= link_to 'Back', client_images_path %>

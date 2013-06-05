@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-05-09 19:40:44
+  photo_package_id: 1
+  engagement_shoot: false
+  cinematography: false
+  country: MyString
+  bride_getting_ready: MyString
+  groom_getting_ready: MyString
+  ceremony_location: MyString
+  ceremony_setting: MyString
+  type_of_ceremony_id: 1
+  ceremony_time: 2013-05-09 19:40:44
+  reception_location: MyString
+  order_of_events: MyText
+  bridesmaids: 1
+  groomsmen: 1
+  number_of_guests: 1
+  photography_style: MyString
+  payment_currency: MyString
+  payment_method: MyString
+  how_did_you_find_us: MyString
+  recommended_by: MyString
+  notes: MyText
+
+two:
+  date: 2013-05-09 19:40:44
+  photo_package_id: 1
+  engagement_shoot: false
+  cinematography: false
+  country: MyString
+  bride_getting_ready: MyString
+  groom_getting_ready: MyString
+  ceremony_location: MyString
+  ceremony_setting: MyString
+  type_of_ceremony_id: 1
+  ceremony_time: 2013-05-09 19:40:44
+  reception_location: MyString
+  order_of_events: MyText
+  bridesmaids: 1
+  groomsmen: 1
+  number_of_guests: 1
+  photography_style: MyString
+  payment_currency: MyString
+  payment_method: MyString
+  how_did_you_find_us: MyString
+  recommended_by: MyString
+  notes: MyText

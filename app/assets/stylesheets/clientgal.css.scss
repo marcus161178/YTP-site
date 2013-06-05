@@ -1,0 +1,71 @@
+
+body { 
+	margin:0px;
+	padding:0px;
+}
+
+h1 {
+	text-align: center;
+}
+
+#gallery {
+	width:960px; 
+	margin: 0px auto 20px auto; 
+	padding:8px;
+	color:#dddddd; 
+	background-color: #eee;
+	border:1px solid #888888;}
+
+img {
+}
+
+#collectionHeader {
+	position:relative;
+	font-size:14px;
+	color:#ffffff;
+	top:10px;
+	left:50px;
+	margin-bottom: 0px;
+}
+
+#collectionHeader h1 {
+	font-size: 16px;
+}
+
+#collectionHeader p {
+	line-height: 16px;
+	margin-top: 0px;
+}
+.galleryimage {
+	width:158px;
+	float:left; 
+	text-align:center;
+	margin:8px; 
+	padding:8px; 
+	border:1px solid #888888;
+	background-color:#bdbdbd;
+}
+
+.galleryimage:hover {
+	width:158px;
+	float:left; 
+	text-align:center; 
+	margin:8px; 
+	padding:8px; 
+	border:1px solid #888888;
+	background-color:#ddd;
+}
+
+.imagetitle { 
+	color:#444;
+	font-size:10px; 
+	text-align:center; 
+}
+
+.hidden { 
+	display:none; 
+}
+
+.pagination {
+	text-align: center;
+}

@@ -1,0 +1,64 @@
+<div id="sitecontent">
+	<% unless @blog_images.blank?%>
+	
+		<div id="frontslideshow"><p>
+			<div class="flexslider">
+				<ul class="slides">
+					<% 15.times do %>
+					<li>
+						<%= image_tag @blog_images.sample.image_url.to_s %>
+					</li>
+					<% end %>
+				</ul>
+			</div>
+		</div><!--frontslideshow -->
+		<% end %>
+		
+		
+		
+<div class="subheading row">	
+	<div class="subtitle twelve columns">	
+<h1 >WELCOME TO YAISA TANGWELL PHOTOGRAPHY</h1>
+<br/>
+<p >Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. <br/> We are based in Trinidad &amp; Tobago and are led by Marcus and Yaisa, a husband and wife team.<%= link_to "..see more", aboutus_path %></p>
+	</div><!--.subtitle -->
+</div><!--.subheading -->
+
+<div class="front-page-content row">
+	<div class="leftcontent six columns nopin">
+		<div class="row">
+			<div class="agwpja six columns">
+				<%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com") %>
+			</div>
+			<div class="bestofweddingphotography six columns">
+				<%= link_to(image_tag("assoc/bestofweddingphotography.png"), "http://www.bestofweddingphotography.com/yaisa-tangwell-photography/") %>
+			</div>
+		</div>
+		<div class="row">
+		<br/>
+			<div class="wpja">
+				<%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com")%>
+			</div>
+		</div >
+	
+</div><!--.leftcontent -->
+	
+		<div class= "rightcontent six columns">
+			
+			
+				<%= image_tag("frontpic.jpg", :class => "nopin frontpic")%>
+			
+		</div><!--.rightcontent -->
+		<div class= "bottomline twelve columns">
+		</div><!--.bottomline -->
+	</div><!--.row -->
+
+	
+</div><!-- sitecontent -->			
+
+
+
+
+
+
+       

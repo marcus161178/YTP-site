@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Yaisa Tangwell Photography</title>
+  
+  <%= csrf_meta_tag %>
+  <%= favicon_link_tag 'favicon.ico' %>
+  
+  <%= stylesheet_link_tag "gumby", "flexslider", "lightbox", "home" %>
+  
+  <%= javascript_include_tag "application", "lightbox", "jquery-ui-1.8.18.custom.min", "jquery.smooth-scroll.min", "jquery.flexslider" %>
+    
+  
+ <!-- Place in the <head>, after the three links -->
+ <script type="text/javascript" charset="utf-8">
+   $(window).load(function() {
+     $('.flexslider').flexslider();
+   });
+ </script>
+</head>
+ 
+  <body class="" >
+  	
+
+
+<%= render "layouts/sign_in"%>
+
+<div id="page_wrap" class="container row">	
+	<%= render "layouts/alert_notification"%>
+
+
+	<%= render "layouts/smallheader"%>
+
+	<%= render "layouts/client_portal_navbar" %>
+		
+	<%= yield %>
+	
+	<%= render "layouts/copyright" %>
+	
+</div><!--.pagewrap-->
+
+	
+<%= javascript_include_tag "fluidvids" %>
+<%= render "layouts/pinteresthover"%>
+	
+	
+</body>

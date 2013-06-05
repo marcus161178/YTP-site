@@ -1,0 +1,6 @@
+  <%= image_tag blog_image.image_url.to_s %>
+  <% if can? :update, @posts %>
+  
+  <%= link_to "edit", edit_blog_image_path(blog_image) %> |
+  <%= link_to "remove", blog_image, :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>

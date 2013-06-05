@@ -1,0 +1,47 @@
+<br />
+<h1> CONTACT US </h1>
+<br/>
+<div id="contact_form">
+
+<div class="left six columns nopin">
+	<div class="phone row">
+		<ul>
+			<li>Trinidad Phone No: 1 (868) 706 1532 </li>
+			<li>US Forwarded No: 1 (954) 278 3460 </li>
+			<li>London Forwarded No: +44 207 100 2848 </li>
+		</ul>
+	</div>
+	
+	<div class="contact_pic row">
+		<%= image_tag "contact.jpg"%>
+	</div>
+</div>
+
+<div class="right six columns">	
+	<%= form_for @message, :url => contact_path do |f| %>
+	<ul>
+	  <li class="field">
+	  	<%= f.label :name, :class => "inline", :for => "name"%>
+	  	<%= f.text_field :name, :class =>"wide text input", :id => "name", :type => "text", :placeholder => "name" %>
+	  </li>
+	<li class="field">
+		<%= f.label "Email", :class => "inline", :for => "email"%>
+		<%= f.text_field :email, :class =>"wide text input", :id => "email", :type => "text", :placeholder => "email" %>
+	</li>
+	<li class="field">
+		<%= f.label "Wedding Date", :class => "inline", :for => "wedding_date"%>
+		<%= f.text_field :wedding_date, :class =>"narrow text input", :id => "wedding_date", :type => "text", :placeholder => "date" %>
+	</li>
+	<li class="field">
+		<%= f.label "Message", :class => "inline", :for => "message"%>
+		<%= f.text_area :body, :class =>"wide text area", :id => "message", :type => "text", :placeholder => "message" %>
+	</li>
+	</ul>
+
+	<div class="contact_btn">
+   	 	<%= f.submit "Send Message" %>
+	</div>
+		<% end %>
+</div>
+
+</div>

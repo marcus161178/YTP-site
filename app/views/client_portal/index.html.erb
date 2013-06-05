@@ -1,0 +1,32 @@
+<h1>WELCOME <%= current_user.bride_first_name.upcase %> & <%= current_user.groom_first_name.upcase %> </h1>
+
+<div id="frontslideshow"><p>
+	<div id="client" class="flexslider">
+		<ul class="slides">
+			
+			<% if !current_user.client_images.blank? %>
+			<% unless current_user.client_images.any? {|v| v.frontslideshow == true} %>
+			
+			<% 20.times do %>
+			<li>
+				<%= image_tag current_user.client_images.sample.photo_url.to_s, :class => "client_slide" %>
+			</li>
+			<% end %>
+			<% else %>
+			
+			<% current_user.client_images.each do |client_image| %>
+			
+			<% if image.frontslideshow == true %>
+			<li>
+				<%= image_tag(client_image.photo_url.to_s)%>
+			</li>
+			<% end %>
+			<% end %>
+			<% end %>
+			<% end %>
+
+		</ul>
+	</div>
+</div><!--frontslideshow -->
+
+

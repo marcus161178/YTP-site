@@ -1,0 +1,27 @@
+<h1>Listing photo_packages</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @photo_packages.each do |photo_package| %>
+  <tr>
+    <td><%= photo_package.name %></td>
+    <td><%= photo_package.description %></td>
+    <td><%= photo_package.price %></td>
+    <td><%= link_to 'Show', photo_package %></td>
+    <td><%= link_to 'Edit', edit_photo_package_path(photo_package) %></td>
+    <td><%= link_to 'Destroy', photo_package, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Photo package', new_photo_package_path %>

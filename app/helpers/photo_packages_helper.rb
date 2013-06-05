@@ -1,0 +1,2 @@
+module PhotoPackagesHelper
+end

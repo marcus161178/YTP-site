@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<ul>
+	<li>Bride: <%= @user.bride_first_name %> <%= @user.bride_last_name %></li>
+	<li>Groom: <%= @user.groom_first_name %> <%= @user.groom_last_name %></li>
+	<li>Phone: <%= @user.phone_number%></li>
+	<li>Address: <%= @user.address %>
+	<li>Email: <%= @user.email %></li>
+	<li>Alt Email: <%= @user.alt_email%></li>
+	<li>Admin: <%= @user.admin %></li>
+	
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

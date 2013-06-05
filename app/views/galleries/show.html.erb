@@ -1,0 +1,41 @@
+<h1>OUR <%= @gallery.name%> GALLERY</h1>
+
+
+<div id="photogallery" class= "row">
+	<% @num = 0 %>
+
+	<% @imagesforcount.each do |client_image| %>
+	
+	<%  if @images.any? {|img| img.photo_url.to_s == client_image.photo_url.to_s }%>
+	<div class="client_thumb two columns nopin">
+		<% else %>
+		<span class="hidden">
+		<% end %>
+		
+		<a href=<%= client_image.photo_url.to_s %> rel="lightbox[YTP]" title=<%= client_image.name %>>
+		
+		<% if @images.any? {|img| img.photo_url.to_s == client_image.photo_url.to_s }%>
+		<img border="0" src="/assets/copyright.gif" width="158" height="105" style= "background-image:url(<%= client_image.photo.url(:thumb).to_s  %>); background-position:center; background-repeat:no-repeat; border:none;"/></a>
+		<div class="imagetitle"><%= client_image.name %></div>
+	</div>
+	<% else %>
+</a></span>
+<%end%>
+	<% end %>
+
+
+<div style="clear:both;"></div>
+
+</div>
+<div class="paginate">
+<%= paginate @images %>
+</div>
+
+
+  
+<% if can? :update, @gallery %>
+
+<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
+<%= link_to 'Back', galleries_path %>
+
+<% end %>

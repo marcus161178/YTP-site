@@ -1,0 +1,25 @@
+<div class="row navbar" id="nav1">
+	<a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
+	
+	
+		<ul class="">
+			<li ><%= link_to "HOME", home_path %></li>
+			<li ><%= link_to "BLOG", blog_path %></li>
+			<li ><%= link_to "CINEMATOGRAPHY", cinematography_path %></li>
+			<li ><%= link_to "WEDDINGS", categories_path %></li>
+			<li>
+				<% unless user_signed_in? %>
+			<%= link_to "CLIENTS", new_user_session_path %>
+			<% else %>
+			<%= link_to "CLIENT PORTAL", client_portal_path, :class => "portallink" %>
+			<% end%>
+			
+			</li>
+			<li><% if user_signed_in? && current_user.admin == true  %>
+			<%= link_to "USERS", users_path %>
+			<% end %></li>
+			<li><%= link_to "CONTACT", contact_path %></li>
+			<li><%= link_to "ABOUT US", aboutus_path %></li>
+			
+		</ul>
+</div><!-- #site-navigation -->

@@ -1,0 +1,39 @@
+<%= form_for @client_image, :html => {:multipart => true }   do |f| %>
+  <% if @client_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client_image.errors.count, "error") %> prohibited this client_image from being saved:</h2>
+
+      <ul>
+      <% @client_image.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.select :user_id, User.all.collect {|u| [u.username, u.id]} %>
+	
+  </div>
+  <div class="field">
+    <%= f.label :gallery_id %><br />
+    <%= f.select :gallery_id, Gallery.all.collect {|g| [g.name, g.id]} %>
+  </div>
+  <div class="field">
+    <%= file_field_tag(:photo , multiple: true, name: "client_image[photo]") %><br />
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%;"></div></div>
+</div>
+</script>

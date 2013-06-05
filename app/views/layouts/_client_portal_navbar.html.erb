@@ -1,0 +1,32 @@
+<div class="navbar" id="nav1">
+	<a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
+		<ul class="">
+			<li ><%= link_to "HOME", client_portal_path %></li>
+			<% unless current_user.galleries.blank? %>
+			<li>
+				
+				<%= link_to "MY PHOTOS", "#" %>
+					<div class="dropdown">
+			        	<ul>
+							<% current_user.galleries.uniq.each do |gallery| %>
+							<li><%= link_to gallery.name, gallery %></li>
+							<% end %>
+							
+				  		</ul>
+			  		</div>
+			</li>
+			<% end %>
+			<li><%= link_to "CINEMATOGRAPHY", "#" %>
+				<div class="dropdown">
+		        	<ul>
+						<li ><%= link_to "TRAILER", cinema_path(:user_id => 1, :vid => 1) %></li>
+				  		<li><a href="#">FEATURE</a></li>
+				  	 	<li><a href="#">SPEECHES</a></li>
+			  		</ul>
+		  		</div>
+			</li>
+			<li ><%= link_to "MY WEDDING", mywedding_path %></li>
+			<li ><%= link_to "TIPS", tips_path %></li>
+			<li ><%= link_to "SETTINGS", settings_path %></li>
+		</ul>
+</div><!-- #site-navigation -->

@@ -1,0 +1,50 @@
+<div class="ytpforms">
+	<%= form_for @post, :html => {:multipart => true } do |f| %>
+  		<% if @post.errors.any? %>
+    		<div id="error_explanation">
+     			<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+				<ul>
+     		   	 	<% @post.errors.full_messages.each do |msg| %>
+      		   		<li><%= msg %></li>
+      		   	 	<% end %>
+		   		</ul>
+			</div>
+		<% end %>
+		
+		<div class="input">
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+		</div>
+  	  	<div class="input">
+    		<%= f.label :body %>
+    		<%= f.text_area :body, :size => "50x80" %>
+  	  	</div>
+  
+  	  	<div class="input">
+	 	   <% @categories.each do |category| %>
+	 	 		<% unless category.children.blank? %>
+   	 	 			<%= f.label category.name %>
+					<%= f.collection_select :category_ids, category.children.all, :id, :name, {}, { :multiple => true } %>
+				<% end %>
+			<% end %>
+		</div>
+  	  	<div>
+			<%= f.label :published %>
+			<%= f.check_box :published %>
+			<%= f.label "Published date:" %>
+			<%= f.date_select :published_at, :order => [:day, :month, :year] %> 
+			
+		</div>
+		
+		<div class="clear"></div>
+		
+		
+		
+			<div class="input">
+				<%= f.submit %>
+			</div>
+	<% end %>
+</div>
+
+
+

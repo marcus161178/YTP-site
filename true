@@ -1,0 +1,31 @@
+Plural version of the model detected, using singularized version. Override with --force-plural.
+[1m[37m      invoke[0m  active_record
+[1m[32m      create[0m    db/migrate/20130423183105_create_images.rb
+[1m[32m      create[0m    app/models/image.rb
+[1m[37m      invoke[0m    test_unit
+[1m[32m      create[0m      test/unit/image_test.rb
+[1m[32m      create[0m      test/fixtures/images.yml
+[1m[37m      invoke[0m  resource_route
+[1m[32m       route[0m    resources :images
+[1m[37m      invoke[0m  scaffold_controller
+[1m[32m      create[0m    app/controllers/images_controller.rb
+[1m[37m      invoke[0m    erb
+[1m[32m      create[0m      app/views/images
+[1m[32m      create[0m      app/views/images/index.html.erb
+[1m[32m      create[0m      app/views/images/edit.html.erb
+[1m[32m      create[0m      app/views/images/show.html.erb
+[1m[32m      create[0m      app/views/images/new.html.erb
+[1m[32m      create[0m      app/views/images/_form.html.erb
+[1m[37m      invoke[0m    test_unit
+[1m[32m      create[0m      test/functional/images_controller_test.rb
+[1m[37m      invoke[0m    helper
+[1m[32m      create[0m      app/helpers/images_helper.rb
+[1m[37m      invoke[0m      test_unit
+[1m[32m      create[0m        test/unit/helpers/images_helper_test.rb
+[1m[37m      invoke[0m  assets
+[1m[37m      invoke[0m    coffee
+[1m[32m      create[0m      app/assets/javascripts/images.js.coffee
+[1m[37m      invoke[0m    scss
+[1m[32m      create[0m      app/assets/stylesheets/images.css.scss
+[1m[37m      invoke[0m  scss
+[1m[34m   identical[0m    app/assets/stylesheets/scaffolds.css.scss

@@ -1,0 +1,57 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="booking_form row">
+  
+  <h1>Profile Settings</h1>
+	  <ul>
+		  <li class="field row">
+		    <%= f.label "Bride:", :class => "two columns" %>
+		    <%= f.text_field :bride_first_name, :class => "form_margin five columns wide text input",:disabled => "disabled", :id => "name", :type => "text", :placeholder => "first name" %>
+		    <%= f.text_field :bride_last_name,:class =>"five columns wide text input",:disabled => "disabled", :id => "bride_last_name", :type => "text", :placeholder => "last name" %>
+		  </li>
+		  <li class="field row">
+		    <%= f.label "Groom:", :class => "two columns" %>
+		    <%= f.text_field :groom_first_name, :class => "form_margin five columns wide text input",:disabled => "disabled", :id => "name", :type => "text", :placeholder => "first name" %>
+		    <%= f.text_field :groom_last_name,:class =>"five columns wide text input",:disabled => "disabled", :id => "bride_last_name", :type => "text", :placeholder => "last name" %>
+		  </li>
+		  <li class="field">
+		    <%= f.label "Mailing Address:", :class => "top inline", :for => "address"%>
+		    <%= f.text_area :address, :class =>"wide textarea input", :id => "adress", :type => "text", :placeholder => "Mailing addresss", :rows=> "4", :cols => "50" %>
+		  </li>
+  
+		  <li class="field">
+		    <%= f.label :username, :class => "inline", :for => "username"%>
+		    <%= f.text_field :username, :class =>"narrow text input",:disabled => "disabled", :id => "username", :type => "text", :placeholder => "username" %>
+		  </li>
+  <li class="field">
+	<%= f.label :email, :class => "inline", :for => "email"%>
+    <%= f.email_field :email, :class =>"narrow text input", :id => "email", :type => "email", :placeholder => "Email input" %>
+  </li>
+  <li class="field">
+	<%= f.label "Alternative Email", :class => "inline", :for => "email"%>
+    <%= f.email_field :alt_email, :class =>"narrow text input", :id => "email", :type => "email", :placeholder => "Email input" %>
+  </li>
+  
+  
+  
+  <li class="actions">
+    <%= f.submit %>
+  </li>
+  <li>
+	  <%= link_to "Change Password", edit_password_path %>
+  </li>
+</ul>
+<% end %>
+</div>
+
+

@@ -1,0 +1,53 @@
+<h1>Booking Form</h1>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+	  <ul class="booking_form">
+
+		  <li class="field row">
+		    <%= f.label "Bride", :class => "two columns" %>
+		    <%= f.text_field :bride_first_name, :autofocus => true, :class => "form_margin five columns wide text input", :id => "name", :type => "text", :placeholder => "first name" %>
+		    <%= f.text_field :bride_last_name,:class =>"five columns wide text input", :id => "bride_last_name", :type => "text", :placeholder => "last name" %>
+		  </li>
+		  <li class="field row">
+		    <%= f.label "Groom", :class => "two columns" %>
+		    <%= f.text_field :groom_first_name, :class => "form_margin five columns wide text input", :id => "name", :type => "text", :placeholder => "first name" %>
+		    <%= f.text_field :groom_last_name,:class =>"five columns wide text input", :id => "bride_last_name", :type => "text", :placeholder => "last name" %>
+		  </li>
+		  <li class="field">
+		    <%= f.label "Mailing Address", :class => "top inline", :for => "address"%>
+		    <%= f.text_area :address, :class =>"wide textarea input", :id => "adress", :type => "text", :placeholder => "Mailing addresss", :rows=> "4", :cols => "50" %>
+		  </li>
+		  <li class="field">
+			<%= f.label :phone_number, :class => "inline", :for => "tel1"%>
+		    <%= f.telephone_field :phone_number, :class =>"narrow text input", :default => nil, :id => "tel1", :type => "tel", :placeholder => "(xxx) xxx-xxxx" %>
+		  </li>
+		  <li class="field">
+	<%= f.label :alt_phone_number, :class => "inline", :for => "tel2"%>
+    <%= f.telephone_field :alt_phone_number, :class =>"narrow text input", :default => nil, :id => "tel2", :type => "tel", :placeholder => "(xxx) xxx-xxxx" %>
+  </li>
+		  
+  <li class="field">
+	<%= f.label :email, :class => "inline", :for => "email"%>
+    <%= f.email_field :email, :class =>"narrow text input", :id => "email", :type => "email", :placeholder => "Email input" %>
+  </li>
+  <li class="field">
+	<%= f.label "Alternative Email", :class => "inline", :for => "email"%>
+    <%= f.email_field :alt_email, :class =>"narrow text input", :id => "email", :type => "email", :placeholder => "Email input" %>
+  </li>
+  <li class="field">
+    <%= f.label :username, :class => "inline", :for => "username"%>
+    <%= f.text_field :username, :class =>"narrow text input", :id => "username", :type => "text", :placeholder => "username" %>
+  </li>
+  <li class="field">
+    <%= f.label :password, :class => "inline", :for => "password1"%>
+    <%= f.password_field :password, :class =>"narrow text input", :id => "password1", :type => "password", :placeholder => "password" %>
+  </li>
+  <li class="field">
+    <%= f.label "Re-type Password", :class => "inline", :for => "password2"%>
+    <%= f.password_field :password_confirmation, :class =>"narrow text input", :id => "password2", :type => "password", :placeholder => "password" %>
+  </li>
+
+  <li><%= f.submit "Submit" %></li>
+</ul>
+<% end %>

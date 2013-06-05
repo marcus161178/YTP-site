@@ -1,0 +1,26 @@
+<h1>Listing blog_images</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Post</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @blog_images.each do |blog_image| %>
+  <tr>
+    <td><%= blog_image.name %></td>
+    <td><%= blog_image.image %></td>
+    <td><%= blog_image.post_id %></td>
+    <td><%= link_to 'Show', blog_image %></td>
+    <td><%= link_to 'Edit', edit_blog_image_path(blog_image) %></td>
+    <td><%= link_to 'Destroy', blog_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

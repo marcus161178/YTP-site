@@ -1,0 +1,44 @@
+<div class="post_category_head">
+<h1>VIEW WEDDINGS BY:</h1>
+</div>
+
+<div class="category_content">
+
+<% @categories.each_slice(2) do |slice| %>
+
+<div class= "row">
+   <% slice.each do |category| %>
+  
+	 <div class= "category six columns">
+		 
+    	<h3><%= category.name.upcase %></h3>
+		
+		<%= image_tag "category/"+category.name.gsub(' ', '').downcase+".jpg",  :class => "categoryphoto" %>
+		<li>
+			<% category.children.each do |child| %>
+				<ul>
+					<%= link_to child.name.upcase, child %> 
+					<% if can? :update, @category %>
+		    			|<%= link_to 'Edit', edit_category_path(child) %> | 
+		    			<%= link_to 'Destroy', child, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
+				</ul>
+			<% end %>
+		</li>
+			<% if can? :update, @category %>
+    			<%= link_to 'Edit Main Category', edit_category_path(category) %> |
+    			<%= link_to 'Destroy Main Category', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<% end %>
+	</div>
+
+	<% end %>
+	
+	
+</div>
+
+
+<% end %>
+</div>
+<% if can? :update, @category %>
+<%= link_to 'New Category', new_category_path %>
+<% end %>

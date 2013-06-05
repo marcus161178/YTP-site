@@ -1,0 +1,5 @@
+<% if @client_image.new_record? %>
+  alert("Failed to upload Client Image: <%= j @client_image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#client_images").append("<%= j render(@client_image) %>");
+<% end %>

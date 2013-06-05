@@ -1,0 +1,71 @@
+<div class=row>
+	
+	<div class="line push_one ten columns"></div></div>
+	
+	
+<div id="bottomlinks" class="row" role="complementary">
+
+
+	<div class="btmlink1 three columns">
+		<h3 class="widget-title">RECEPTION VENUES</h3>
+		<ul>
+			<% @receptvenues[(0..3)].each do |venue| %>			
+			<li class=""> <%= link_to venue.name.upcase, venue %></li>
+			<% end %>
+			<li><%= link_to '...see more', categories_path %></li>
+			
+		</ul>	
+		</div><!-- .first -->
+	
+	
+
+	<div class="btmlink2 three columns">
+		<h3 class="widget-title">COUNTRY</h3>
+		<ul>	
+			<% @ctry[(0..3)].each do |ctry| %>			
+			<li class=""> <%= link_to ctry.name.upcase, ctry %></li>
+			<% end %>
+			<li><%= link_to '...see more', categories_path %></li>
+		</ul>	
+</div><!-- .second -->
+
+
+
+
+        <div class="btmlink3 three columns">
+               <h3 class="widget-title">CEREMONY TYPE</h3>
+			   <ul>	
+	   			<% @cmony[(0..3)].each do |ceremony| %>			
+	   			<li class=""> <%= link_to ceremony.name.upcase, ceremony %></li>
+	   			<% end %>
+	   			<li><%= link_to '...see more', categories_path %></li>
+			</ul>       
+		</div><!-- .third -->
+
+
+    
+        <div class="btmlink4 three columns">
+      	  <h3 class="">RECENT POSTS</h3>
+		<ul>
+									
+					<% @rposts[(0..3)].each do |rpost| %>			
+					<li class=""> <%= link_to rpost.title.upcase, rpost %></li>
+					<% end %>
+					<li><%= link_to '...see more', posts_path %></li>
+					
+				</ul>
+	</div><!-- .fourth -->
+    
+</div><!--#bottomlinks.row -->
+
+<div id="social-icons" class="nopin">
+	<%= link_to(image_tag("twitter.png"),"https://twitter.com/yaisatangwell") %>
+	<%= link_to(image_tag("facebook.png"), "http://www.facebook.com/yaisatangwellphotography")%>
+	<%= link_to(image_tag("vimeo.png"), "http://www.vimeo.com/channels/yaisatangwellphotography") %>
+	<%= link_to(image_tag("googleplus.png"), "http://www.googleplus.com/yaisatangwellphotography") %>
+	<%= link_to(image_tag("pinterest.png"), "http://www.pinterest.com/yaisatangwell") %>
+</div><!--social-icons-->
+
+
+<%= render "layouts/copyright" %>
+

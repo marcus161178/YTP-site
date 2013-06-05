@@ -1,0 +1,9 @@
+
+<ul>
+<li><%= link_to image_tag(client_image.photo_url(:tiny).to_s), client_image.photo_url.to_s %><li>
+<li><%= client_image.gallery.name %></li>
+<li><%= client_image.name %></li>
+<li><%= link_to 'Show', client_image %></li>
+<li><%= link_to 'Edit', edit_client_image_path(client_image) %></li>
+<li><%= link_to 'Destroy', client_image, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+</ul>

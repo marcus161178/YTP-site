@@ -1,0 +1,30 @@
+<h1>Images for <%= @user.username %></h1>
+<div class="client_image">
+
+<div id="client_images" class="nopin">
+	<%= render @client_images %>
+</div>
+		
+</div>
+
+
+<%= form_for ClientImage.new , :html => {:multipart => true }   do |f| %>
+<div class="field">
+  <%= f.hidden_field :user_id, :value => @user_id %><br />
+</div>
+<div class="field">
+  <%= f.label :gallery_id %><br />
+  <%= f.select :gallery_id, Gallery.all.collect {|g| [g.name, g.id]} %>
+</div>
+<div class="field">
+  <%= file_field_tag(:photo , multiple: true, name: "client_image[photo]") %><br />
+</div>
+<% end %>
+<div class="row">
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
+</div>

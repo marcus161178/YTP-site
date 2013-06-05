@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Yaisa Tangwell Photography</title>
+  
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag "gumby", "home", "flexslider"%>
+
+<%= javascript_include_tag "application", "basic", "client_images"%>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+
+  
+  <%= javascript_include_tag "jquery.flexslider" %>
+  
+  <!-- Place in the <head>, after the three links -->
+  <script type="text/javascript" charset="utf-8">
+    $(window).load(function() {
+      $('.flexslider').flexslider();
+    });
+  </script>
+    
+</head>
+ 
+
+<body class="" >
+	<%= render "layouts/sign_in"%>
+	
+<div id="page_wrap" class="container row">	
+	<%= render "layouts/alert_notification"%>
+	
+	<%= render "layouts/bigheader"%>
+	
+	
+	<%= render "layouts/stdnavbar" %>
+		
+	<%= yield %>
+	
+	<%= render "layouts/bigftr" %>
+	
+</div><!--.pagewrap-->
+
+<%= render "layouts/pinteresthover"%>
+
+	
+</body>

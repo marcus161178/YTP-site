@@ -1,0 +1,52 @@
+<h1>Editing Categories/Sub-Categories</h1>
+
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+	  
+    <div class="five columns">
+		<% if @category.is_root? %>
+  	  <h2>Existing Sub-Categories</h2>
+  	  <ul>
+  	  <% @category.children.each do |childcat| %>
+  	  <li><%= link_to childcat.name, edit_category_path(:id => childcat.id) %></li>
+  	  <% end %>
+	  <% end %>
+    </ul>
+	
+  </div>
+
+  <div class="seven columns">
+    <%= f.label "Edit Category/Sub-category Name" %><br />
+    <%= f.text_field :name %>
+	<% unless @category.is_root? %>
+    <%= f.label "Downdaisle url" %>
+    <%= f.text_field :url, :size => 40 %>
+	<% end %>  
+  <%= f.submit %>
+ 	<% if @category.is_root?%>
+  <%= link_to "Add Sub Categories", new_category_path(:ancestry => @category.id)%>
+  <% end %>
+  
+</div>
+  
+  
+<% end %>
+
+ 
+  
+ 
+  
+  
+<%= link_to 'Show', @category %> |
+<%= link_to 'Back', categories_path %>

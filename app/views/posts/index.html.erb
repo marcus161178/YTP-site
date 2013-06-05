@@ -1,0 +1,99 @@
+<% if @page == 1 && !@recentpost.blank? %>
+<div class="mainpost row">
+	<div class="twelve columns">
+		<h1> <%= link_to @recentpost.title.upcase, @recentpost %></h1>
+			<div class="ifcan">
+				<% if can? :update, @post %>
+					<%= link_to 'Edit', edit_post_path(@recentpost) %> | 
+					<%= link_to 'Destroy', @recentpost, method: :delete, data: { confirm: 'Are you sure?' } %>
+				<% end %>
+			</div>
+		<h2 class="published_date">Published on: <%= @recentpost.published_at.to_date.to_formatted_s(:long_ordinal) %></h2>
+		<div id="frontslideshow" class="blogslideshow"><p>
+			<div class="flexslider">
+				<ul class="slides">
+					<% @recentpost.blog_images.each do |img| %>
+					<li>
+						<%=  link_to image_tag(img.image_url.to_s), @recentpost %>
+					</li>
+					<% end %>
+				</ul>
+			</div>		
+		</div>		
+		<p><%= truncate(@recentpost.body, :length => 200) %>...<%= link_to 'see more', @recentpost %></p>
+	   	
+	</div>
+</div>
+<div class=row><div class="line push_one ten columns"></div></div>
+
+
+<% end %>
+
+
+
+
+<div class="small_posts_div row">
+	<div class="sidebarcontact four columns">
+		<h3>Contact Us</h3>
+		<%= form_tag("email", :method => "post") do %>
+		  <%= label_tag(:q, "Name:") %>
+		  <%= text_field_tag(:q) %>
+		  <%= label_tag(:q, "Wedding Date:") %>
+		  <%= text_field_tag(:q) %>
+		  <%= label_tag(:q, "Email Address:") %>
+		  <%= text_field_tag(:q) %>
+		  <%= submit_tag("Send") %>
+		<% end %>
+		
+	</div><!--four columns-->
+  	
+	<div class="small_posts_content eight columns">
+	
+		
+		<% @posts.each_slice(2) do |slice| %>
+		
+		<div class="row">
+			<% slice.each do |post| %>
+			
+				<div class="smallpost six columns">
+   	 		   	 <h3><%= link_to post.title.upcase, post, :class => "post-title"  %></h3>
+				 <div class="ifcan">
+					<% if can? :update, @posts %>
+			  	   		<%= link_to 'Edit', edit_post_path(post) %> | 
+    					<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
+				</div>
+				 <h4>Published on: <%= post.published_at.to_date.to_formatted_s(:long_ordinal) %></h4>
+			   <% unless post.blog_images.first.blank? %>
+			   <%=  link_to image_tag(post.blog_images.sample.image_url(:small).to_s), post %>
+   				<% end %>
+			   
+	   			
+    		   <p><%= truncate(post.body, :length => 60) %>...<%= link_to 'see more', post %></p>
+			   
+			   
+			</div>
+			<% end %>
+			
+		</div>
+		
+	<% end %>
+	</div><!--eight columns-->
+	
+</div><!--frontslideshow -->
+
+
+
+
+<div class="paginate">
+	<% if can? :update, @posts %>
+		<%= link_to "View Unpublished Posts", unpublished_path %><br/>
+		<%= link_to "View Scheduled Posts", scheduled_path %><br/>
+		<%= link_to 'Create New Post', new_post_path %>
+	
+		<% end %>
+    <%= will_paginate @posts, previous_label: h("Previous"), next_label: h(" More Weddings...") %>
+</div>
+
+
+

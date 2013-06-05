@@ -1,0 +1,32 @@
+<h1>CINEMATOGRAPHY</h1>
+
+<% @videos.each do |video|%>
+
+<div class="row cinema-content">
+	
+		<div class="six columns cinema_video">
+		
+		<%= video.url.html_safe %>
+		<% if can? :update, @post %> 
+		
+	    <%= link_to "edit", edit_video_path(video) %> |
+	    <%= link_to "remove", video, :confirm => 'Are you sure?', :method => :delete %>
+		<% end%>
+	</div>
+	<div class="six columns cinema_body">
+	<h2><%= link_to video.post.title.upcase, video.post %></h2>
+	<p><%= truncate(video.post.body, :length => 150)%><%= link_to 'see more', video.post %></p>
+</div>
+	
+	</div>
+	<% end %>
+	
+	
+	<% if can? :update, @post %> 
+
+
+<%= link_to 'New Video', new_video_path %>
+<% end %>
+<div class="paginate">
+<%= will_paginate @videos %>
+</div>

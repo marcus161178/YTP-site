@@ -1,0 +1,43 @@
+	
+<div class="row">
+	<div class= "loginformleft six columns">
+		<%= link_to image_tag("booking.jpg"), new_registration_path(resource_name) %>
+	<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+	<h1><%= link_to "CLICK HERE TO BEGIN THE BOOKING PROCESS", new_registration_path(resource_name), :class => "booking_form_link" %><h1 />
+	<% end -%>
+
+</div>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  
+	<div class="loginformright six columns">
+	<h2>EXISTING CLIENTS</h2>
+	<h3>PLEASE LOG IN</h3>
+	
+  <ul>
+  	<li class="field">
+    	<%= f.label :username, :class => "inline", :for => "username", :autofocus => true %>
+   	 	<%= f.text_field :username, :class =>"wide text input", :id => "username", :type => "text", :placeholder => "username",  :autofocus => true %>
+  	</li>
+  	<li class="field">
+    	<%= f.label :password, :class => "inline", :for => "password"%>
+    	<%= f.password_field :password, :class =>"wide password input", :id => "password", :type => "password", :placeholder => "password"  %>
+  	</li>
+  	<li class="checkbox inline">
+  	  	<% if devise_mapping.rememberable? -%>
+		<%= f.label :remember_me, :class => "inline" %>
+		<%= f.check_box :remember_me, :class => "checkbox"%> 
+  	  	<% end -%>
+	</li>
+	<li class="loginbox">
+		<%= f.submit "Sign in", :class => "signin pretty default medium btn"%>
+	</li>
+<% end %>
+
+	<li>
+		<%= render "devise/shared/links" %>
+	</li>
+	</ul>
+</div>
+
+</div>

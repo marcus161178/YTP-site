@@ -1,0 +1,61 @@
+<h1>Categories & Sub-Categories</h1>
+
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @rootcats.blank? %>
+  <%= f.hidden_field :ancestry %>
+  <% end %>
+	  
+  <div class="row">
+	  
+  <div class="six columns">
+	  
+	  <% unless @rootcats.blank? %>
+	  
+	  <h2>Existing Categories</h2>
+	  <ul>
+	  <% @rootcats.each do |rootcat| %>
+	  <li><%= link_to rootcat.name, edit_category_path(rootcat) %></li>
+	  <% end %>
+	  <% end %>
+	  
+	  <% unless @childcats.blank? %>
+	  
+	  <h2>Existing Sub-Categories for <%= @category.parent.name %></h2>
+	  <ul>
+	  <% @childcats.each do |childcat| %>
+	  <li><%= link_to childcat.name, edit_category_path(childcat) %></li>
+	  <% end %>
+	  <% end %>
+	  
+	  
+  </ul>
+</div>
+  
+  <div class="form six columns">
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 40 %><br />
+	<% if @rootcats.blank?%>
+    <%= f.label "Downdaisle url" %>
+    <%= f.text_field :url, :size => 40 %>
+	<% end %>  
+    <%= f.submit %>
+  </div>
+  
+
+</div>
+<% end %>
+
+<%= link_to 'Show', @category %> |
+<%= link_to 'Back', categories_path %>

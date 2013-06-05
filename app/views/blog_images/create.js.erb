@@ -1,0 +1,5 @@
+<% if @blog_image.new_record? %>
+  alert("Failed to upload Blog Image: <%= j @blog_image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#blog_images").append("<%= j render(@blog_image) %>");
+<% end %>

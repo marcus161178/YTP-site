@@ -1,0 +1,19 @@
+development:
+  app_key: "neyve8zyv57drc7"
+  app_secret: "p9puqtw2czub3hq"
+  access_token: "ACCESS_TOKEN"
+  access_token_secret: "ACCESS_TOKEN_SECRET"
+  user_id: "yaisatangwell@gmail.com"
+  access_type: "app_folder"
+  
+  path: "/:attachment/:attachment/:id/:style/:filename"
+test:
+  
+production:
+
+
+test:
+ 
+ 
+ 
+production:
