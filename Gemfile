@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'therubyracer'
 gem 'sqlite3'
 gem 'bcrypt-ruby','3.0.1'
 gem "cocaine", '0.5.1'
@@ -30,7 +29,7 @@ group :assets do
   gem 'jquery-ui-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+ gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
