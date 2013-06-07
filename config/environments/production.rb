@@ -66,5 +66,5 @@ Proofing::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   # Devise option
-  config.action_mailer.default_url_options = { :host => 'yaisatangwell.com' }
+  config.action_mailer.default_url_options = { :host => 'thepouitree.com' }
 end
