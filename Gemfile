@@ -17,6 +17,7 @@ gem 'friendly_id'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'will_paginate'
+gem 'mysql2'
 gem 'yaml_db'
 
 
