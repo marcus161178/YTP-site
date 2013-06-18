@@ -7,7 +7,8 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.order("RANDOM()").page(params[:page]).per_page(6)
+    @videos = Video.order('id DESC').page(params[:page]).per_page(6)
+
 
     respond_to do |format|
       format.html # index.html.erb

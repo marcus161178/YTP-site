@@ -11,7 +11,7 @@
 
 	h1 {
 		font-size: 1.5em;
-		
+	text-align: center;	
 	}
 	h2 {
 		font-size: 1.3em;
@@ -22,6 +22,17 @@
 
 }
 
+.adminclientthumb {
+min-height: 170px;
+text-align: center;
+padding-left: 2px;
+padding-right: 2px
+}
+
+#client_images {
+margin-left: 50px;
+}
+
 .loginformright {
 	padding-top: 50px;
 	padding-left:60px;
@@ -29,7 +40,8 @@
 	padding-bottom:50px;
 	text-align: center;
 	h3 {
-		padding-bottom:15px;
+	padding-bottom:15px;
+	font-size: 1em;	
 	}
 	
 }
@@ -120,12 +132,19 @@ box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
 
 #frontslideshow {
 	text-align: center;
-	padding-left:35px;
-	padding-right:35px;
+	padding-left:55px;
+	padding-right:55px;
 	li {
 	padding-bottom: 0em;
 	}
-	
+	.flexslider .slides img {
+	max-width: 100%;
+        max-height: 600px;
+        height: auto;
+        width: auto;
+        display:inline-block;
+        text-align:center;
+	}
 }
 #frontslideshow.blogslideshow {
 	
@@ -190,6 +209,10 @@ box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
 	margin-top: 40px;
 	margin-bottom: 5px;
 	text-align:center;
+}
+.g-plusone {
+text-align: center;
+
 }
 #bottomlinks {
 	margin-bottom: 5px;
@@ -295,7 +318,26 @@ box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
 			padding: 20px 70px 0px 70px;
 		}
 	
-		
+.blogbadges {
+text-align: center;
+padding-top: 80px;
+	.row {
+	padding-bottom: 15px
+	}
+}		
+
+
+.fb-like {
+margin-left:0px;
+margin-top: 5px;
+}
+
+
+.fb-like-mainpost {
+
+margin-left:60px
+
+}
 		
 .smallpost {
 	padding: 8px 10px 0px 10px;
@@ -448,7 +490,7 @@ margin-right: 10px;
 
 #client.flexslider .slides img {
 	max-width: 100%;
-	max-height: 480px;
+	max-height: 600px;
 	height: auto;
 	width: auto;
 	display:inline-block;
@@ -499,10 +541,10 @@ margin-right: 10px;
 }
 .about-us {
 	.right {
-		padding: 0px 90px 0px 40px;
+		padding: 0px 55px 0px 60px;
 	}
 	.left {
-		padding: 0px 40px 0px 90px;
+		padding: 0px 60px 0px 90px;
 	}
 	h1 {
 		margin-top:60px;
@@ -514,6 +556,14 @@ margin-right: 10px;
 		font-size: .9em;
 	}
 }
+
+#aboutus img {
+    float: left; 
+    margin: 10px; 
+
+
+}
+
 .paginate {
 	font-style: normal;
 	text-align: center;
@@ -524,4 +574,3 @@ margin-right: 10px;
 	
 	
 }
-@import 'clientgal'

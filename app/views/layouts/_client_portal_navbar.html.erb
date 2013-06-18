@@ -2,11 +2,17 @@
 	<a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
 		<ul class="">
 			<li ><%= link_to "HOME", client_portal_path %></li>
-			<% unless current_user.galleries.blank? %>
-			<li>
-				
-				<%= link_to "MY PHOTOS", "#" %>
-					<div class="dropdown">
+			
+			<% if user_signed_in? && current_user.admin == true  %>
+                        <li>
+			<%= link_to "USERS", users_path %>
+			</li>
+			<li ><%= link_to "BLOG", blog_path %></li>
+
+                        <% end %>
+				<% unless current_user.galleries.blank? %>	
+				<li><%= link_to "MY PHOTOS", "#" %>
+				<div class="dropdown">
 			        	<ul>
 							<% current_user.galleries.uniq.each do |gallery| %>
 							<li><%= link_to gallery.name, gallery %></li>
@@ -16,17 +22,17 @@
 			  		</div>
 			</li>
 			<% end %>
+			<% if current_user.client_videos.any? %>
 			<li><%= link_to "CINEMATOGRAPHY", "#" %>
 				<div class="dropdown">
 		        	<ul>
-						<li ><%= link_to "TRAILER", cinema_path(:user_id => 1, :vid => 1) %></li>
-				  		<li><a href="#">FEATURE</a></li>
-				  	 	<li><a href="#">SPEECHES</a></li>
-			  		</ul>
+				<% current_user.client_videos.each do |client_video| %>
+				<li ><%= link_to client_video.video_type.upcase, client_video %></li>
+			  		<% end %>
+					</ul>
 		  		</div>
 			</li>
-			<li ><%= link_to "MY WEDDING", mywedding_path %></li>
-			<li ><%= link_to "TIPS", tips_path %></li>
+			<% end %>
 			<li ><%= link_to "SETTINGS", settings_path %></li>
 		</ul>
 </div><!-- #site-navigation -->

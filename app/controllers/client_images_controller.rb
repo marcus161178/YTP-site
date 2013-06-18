@@ -5,8 +5,9 @@ class ClientImagesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @client_images = User.find(params[:id].to_i).client_images
-     @user_id = params[:id].to_i
+    @client_images = User.find(params[:id].to_i).client_images.page(params[:page]).per_page(60)
+ @all_client_images = User.find(params[:id].to_i).client_images   
+ @user_id = params[:id].to_i
      @user = User.find(@user_id)
 
     respond_to do |format|
@@ -82,15 +83,15 @@ class ClientImagesController < ApplicationController
     @client_image.destroy
 
     respond_to do |format|
-      format.html { redirect_to client_images_url }
+      format.html { redirect_to :action => 'index' , :id => @client_image.user_id }
       format.json { head :no_content }
     end
   end
   def destroy_multiple
-    ClientImage.destroy(params[:client_image_ids])
-    
+    ClientImage.destroy(params[:client_images])
+   @user_id = params[:user_id].to_i
     respond_to do |format|
-    format.html { redirect_to client_images_path(User.find(params[:user_id])) }
+    format.html { redirect_to :action => 'index', :id => @user_id }
     format.json { head :no_content }
   end
 end

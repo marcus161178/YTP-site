@@ -16,10 +16,13 @@ gem 'rails-gallery'
 gem 'friendly_id'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rmagick'
 gem 'will_paginate'
 gem 'mysql2'
 gem 'yaml_db'
-
+gem 'fog'
+gem 'google-analytics-rails'
+gem 'sitemap_generator'
 
 # Gems used only for assets and not required
 # in production environments by default.

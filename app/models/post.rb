@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :body, :title, :user_id, :blog_images_attributes, :category_ids, :published_at, :published
   
-  has_many  :blog_images
+  has_many  :blog_images, :dependent => :destroy
   accepts_nested_attributes_for :blog_images, :allow_destroy => true
   
   has_many :videos

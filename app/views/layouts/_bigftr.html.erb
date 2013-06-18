@@ -9,10 +9,11 @@
 	<div class="btmlink1 three columns">
 		<h3 class="widget-title">RECEPTION VENUES</h3>
 		<ul>
+			<% @receptvenues.shuffle! %>
 			<% @receptvenues[(0..3)].each do |venue| %>			
-			<li class=""> <%= link_to venue.name.upcase, venue %></li>
+			<li class=""> <%= link_to truncate(venue.name.upcase, :length => 20), venue %></li>
 			<% end %>
-			<li><%= link_to '...see more', categories_path %></li>
+			<li><%= link_to '...see more', vendors_path %></li>
 			
 		</ul>	
 		</div><!-- .first -->
@@ -22,10 +23,11 @@
 	<div class="btmlink2 three columns">
 		<h3 class="widget-title">COUNTRY</h3>
 		<ul>	
+			<% @ctry.shuffle! %>
 			<% @ctry[(0..3)].each do |ctry| %>			
 			<li class=""> <%= link_to ctry.name.upcase, ctry %></li>
 			<% end %>
-			<li><%= link_to '...see more', categories_path %></li>
+			<li><%= link_to '...see more', vendors_path %></li>
 		</ul>	
 </div><!-- .second -->
 
@@ -35,10 +37,11 @@
         <div class="btmlink3 three columns">
                <h3 class="widget-title">CEREMONY TYPE</h3>
 			   <ul>	
-	   			<% @cmony[(0..3)].each do |ceremony| %>			
+	   			<% @cmony.shuffle!  %>
+				<% @cmony[(0..3)].each do |ceremony| %>			
 	   			<li class=""> <%= link_to ceremony.name.upcase, ceremony %></li>
 	   			<% end %>
-	   			<li><%= link_to '...see more', categories_path %></li>
+	   			<li><%= link_to '...see more', vendors_path %></li>
 			</ul>       
 		</div><!-- .third -->
 
@@ -49,9 +52,9 @@
 		<ul>
 									
 					<% @rposts[(0..3)].each do |rpost| %>			
-					<li class=""> <%= link_to rpost.title.upcase, rpost %></li>
+					<li class=""> <%= link_to truncate(rpost.title.upcase, :length => 20), rpost %></li>
 					<% end %>
-					<li><%= link_to '...see more', posts_path %></li>
+					<li><%= link_to '...see more', weddings_path %></li>
 					
 				</ul>
 	</div><!-- .fourth -->
@@ -59,11 +62,12 @@
 </div><!--#bottomlinks.row -->
 
 <div id="social-icons" class="nopin">
-	<%= link_to(image_tag("twitter.png"),"https://twitter.com/yaisatangwell") %>
-	<%= link_to(image_tag("facebook.png"), "http://www.facebook.com/yaisatangwellphotography")%>
-	<%= link_to(image_tag("vimeo.png"), "http://www.vimeo.com/channels/yaisatangwellphotography") %>
-	<%= link_to(image_tag("googleplus.png"), "http://www.googleplus.com/yaisatangwellphotography") %>
-	<%= link_to(image_tag("pinterest.png"), "http://www.pinterest.com/yaisatangwell") %>
+<div>
+	<%= link_to(image_tag("social/twitter.png"),"https://twitter.com/yaisatangwell") %>
+	<%= link_to(image_tag("social/facebook.png"), "http://www.facebook.com/yaisatangwellphotography")%>
+	<%= link_to(image_tag("social/googleplus.png"), "http://google.com/+yaisatangwell") %>
+	<%= link_to(image_tag("social/vimeo.png"), "http://www.vimeo.com/channels/yaisatangwellphotography") %>
+	<%= link_to(image_tag("social/pinterest.png"), "http://www.pinterest.com/yaisatangwell") %>
 </div><!--social-icons-->
 
 

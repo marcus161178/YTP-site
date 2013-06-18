@@ -12,7 +12,8 @@ class Ability
      can :read, Category
      can :read, Video
      can :read, Gallery
-   end
+can :read, ClientVideo	   
+end
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

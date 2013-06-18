@@ -1,0 +1,12 @@
+ <h1> <%= @client_video.name %></h1>
+
+
+
+<div class="client_video">
+		<%= @client_video.url.html_safe %>
+		<% if can? :update, @client_video %> 
+		
+	    <%= link_to "edit", edit_client_video_path(@client_video) %> |
+	    <%= link_to "delete", @client_video, :confirm => 'Are you sure?', :method => :delete %>
+		<% end %>
+	</div>

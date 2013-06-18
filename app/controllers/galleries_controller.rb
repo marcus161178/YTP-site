@@ -23,12 +23,12 @@ class GalleriesController < ApplicationController
   # GET /galleries/1.json
   def show
     @gallery = Gallery.find(params[:id])
-    @images = current_user.client_images.where(:gallery_id => @gallery.id).page(params[:page]).per(60)
+    @images = current_user.client_images.where(:gallery_id => @gallery.id).page(params[:page]).per_page(60)
     
     if @images.blank?
       redirect_to client_portal_path
-    else
-    @imagesforcount = current_user.client_images.where(:gallery_id => @gallery.id)
+    #else
+    #@imagesforcount = current_user.client_images.where(:gallery_id => @gallery.id)
     
     
     respond_to do |format|

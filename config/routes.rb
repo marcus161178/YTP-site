@@ -2,6 +2,9 @@ Proofing::Application.routes.draw do
 
 
 
+  resources :client_videos
+
+
   resources :photo_packages
 
 
@@ -9,12 +12,12 @@ Proofing::Application.routes.draw do
   match '/cinematography', to: 'videos#index'
 
 
-  resources :weddings
+  # resources :weddings
 
 
   resources :client_images do
     collection do
-      put :destroy_multiple
+      delete 'destroy_multiple'
     end
   end
 
@@ -27,9 +30,8 @@ Proofing::Application.routes.draw do
 
   get "client_portal/index"
 
-  devise_for :users  do
-    match 'user' => "client_portal#index", :as => :user_root
-    
+  devise_for :users do 
+	    match 'user' => "client_portal#index", :as => :user_root
   end
      
 
@@ -39,7 +41,8 @@ Proofing::Application.routes.draw do
   root :to => 'custom#home'
 
   resources :comments
-    
+  match '/weddings' => 'posts#index'
+  match '/vendors' => 'categories#index'  
   match '/blog' => 'posts#index'
   match '/unpublished', to: 'posts#unpublished'
   match '/scheduled', to: 'posts#scheduled'
@@ -49,7 +52,7 @@ Proofing::Application.routes.draw do
       # post :add_files, :on => :member
   # end
   match '/client_portal', to: 'client_portal#index'
-  match '/edit_password', to: 'client_portal#edit_password'
+  # match '/edit_password', to: 'client_portal#edit_password'
   match '/cinema', to: 'client_portal#cinema'
   match '/tips', to: 'client_portal#tips'
   match '/settings', to: 'client_portal#settings'

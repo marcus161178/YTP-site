@@ -8,10 +8,10 @@
   
   <%= stylesheet_link_tag "gumby", "flexslider", "lightbox", "home" %>
   
-  <%= javascript_include_tag "application", "lightbox", "jquery-ui-1.8.18.custom.min", "jquery.smooth-scroll.min", "jquery.flexslider" %>
+  <%= javascript_include_tag "application" %>
     
-  
- <!-- Place in the <head>, after the three links -->
+<%= analytics_init if Rails.env.production? %> 
+<!-- Place in the <head>, after the three links -->
  <script type="text/javascript" charset="utf-8">
    $(window).load(function() {
      $('.flexslider').flexslider();
@@ -41,7 +41,6 @@
 
 	
 <%= javascript_include_tag "fluidvids" %>
-<%= render "layouts/pinteresthover"%>
 	
 	
 </body>

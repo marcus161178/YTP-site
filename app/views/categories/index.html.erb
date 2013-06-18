@@ -11,11 +11,11 @@
   
 	 <div class= "category six columns">
 		 
-    	<h3><%= category.name.upcase %></h3>
+    	<h3><%= category.name.pluralize.upcase %></h3>
 		
 		<%= image_tag "category/"+category.name.gsub(' ', '').downcase+".jpg",  :class => "categoryphoto" %>
 		<li>
-			<% category.children.each do |child| %>
+			<% category.children.sort_by!{ |m| m.name.downcase }.each do |child| %>
 				<ul>
 					<%= link_to child.name.upcase, child %> 
 					<% if can? :update, @category %>

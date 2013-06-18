@@ -3,10 +3,10 @@
 	
 	
 		<ul class="">
-			<li ><%= link_to "HOME", home_path %></li>
-			<li ><%= link_to "BLOG", blog_path %></li>
+			<li ><%= link_to "HOME", root_path %></li>
+			<li ><%= link_to "WEDDINGS", weddings_path %></li>
 			<li ><%= link_to "CINEMATOGRAPHY", cinematography_path %></li>
-			<li ><%= link_to "WEDDINGS", categories_path %></li>
+			<li ><%= link_to "VENDORS", vendors_path %></li>
 			<li>
 				<% unless user_signed_in? %>
 			<%= link_to "CLIENTS", new_user_session_path %>
@@ -15,9 +15,6 @@
 			<% end%>
 			
 			</li>
-			<li><% if user_signed_in? && current_user.admin == true  %>
-			<%= link_to "USERS", users_path %>
-			<% end %></li>
 			<li><%= link_to "CONTACT", contact_path %></li>
 			<li><%= link_to "ABOUT US", aboutus_path %></li>
 			

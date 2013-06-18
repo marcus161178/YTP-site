@@ -1,3 +1,12 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=132757036746170";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <h1>CINEMATOGRAPHY</h1>
 
 <% @videos.each do |video|%>
@@ -7,6 +16,7 @@
 		<div class="six columns cinema_video">
 		
 		<%= video.url.html_safe %>
+		<div class="fb-like" data-layout="button_count" data-href="<%= post_url video.post %>" data-send="true" data-width="450" data-show-faces="false"></div>
 		<% if can? :update, @post %> 
 		
 	    <%= link_to "edit", edit_video_path(video) %> |

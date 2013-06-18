@@ -5,9 +5,24 @@
   <%= csrf_meta_tag %>
   <%= favicon_link_tag 'favicon.ico' %>
   
-  <%= stylesheet_link_tag "gumby", "home", "flexslider"%>
-  <%= javascript_include_tag "application", "js/modernizr-2.6.2.min.js","jquery.flexslider" %>
-    
+  <%= stylesheet_link_tag "application", "gumby", "home", "flexslider"%>
+  <%= javascript_include_tag "application", "page/contact" %>
+
+<%= analytics_init if Rails.env.production? %>    
+
+<% @imgs = 0 %>
+<% @fbook_images.each do |fbook_image|%>
+<% if @imgs < 5 %>
+<meta property="og:image" content="http://www.yaisatangwell.com<%= fbook_image.image_url.to_s %>"/>
+<% @imgs = @imgs +1 %>
+<% end %>
+<% end %>
+<meta property="og:title" content="Yaisa Tangwell Photography" />
+<meta property="og:url" content="http://www.yaisatangwell.com" />
+<meta property="og:site_name" content="Yaisa Tangwell Photography" />
+<meta property="og:type" content="blog" />
+<meta property="og:description" content="Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. We are based in Trinidad & Tobago and are led by Marcus and Yaisa, a husband and wife team" />
+
   
  <!-- Place in the <head>, after the three links -->
  <script type="text/javascript" charset="utf-8">

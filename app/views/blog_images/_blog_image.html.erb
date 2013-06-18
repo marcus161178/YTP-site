@@ -1,6 +1,15 @@
   <%= image_tag blog_image.image_url.to_s %>
+
   <% if can? :update, @posts %>
-  
+  <%= form_for(blog_image) do |f| %>
+<%= blog_image.name %>
+<%= File.basename(blog_image.name, '.*').last(2).to_i %>
+<%= f.label "Position" %>
+		    <%= f.text_field :vieworder %>
+    <%= f.submit %>
+
+<% end %>
+
   <%= link_to "edit", edit_blog_image_path(blog_image) %> |
   <%= link_to "remove", blog_image, :confirm => 'Are you sure?', :method => :delete %>
   <% end %>

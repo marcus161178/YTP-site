@@ -68,7 +68,7 @@ class BlogImagesController < ApplicationController
 
     respond_to do |format|
       if @blog_image.update_attributes(params[:blog_image])
-        format.html { redirect_to @blog_image, notice: 'Blog image was successfully updated.' }
+        format.html { redirect_to @blog_image.post, notice: 'Blog image was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,9 +82,10 @@ class BlogImagesController < ApplicationController
   def destroy
     @blog_image = BlogImage.find(params[:id])
     @blog_image.destroy
-
-    respond_to do |format|
-      format.html { redirect_to blog_images_url }
+@file_name = @blog_image.name
+    
+	respond_to do |format|
+      format.html { redirect_to @blog_image.post, notice: "Blog image #{@file_name} was deleted." }
       format.json { head :no_content }
     end
   end

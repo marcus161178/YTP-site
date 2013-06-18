@@ -1,0 +1,31 @@
+<h1>Listing client_videos</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+<th>Type</th>
+<th>Slug</th>
+    <th>Url</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @client_videos.each do |client_video| %>
+  <tr>
+    <td><%= client_video.name %></td>
+<td><%= client_video.video_type %></td>
+<td><%= client_video.slug %></td>
+    <td><%= client_video.url %></td>
+    <td><%= client_video.user.username %></td>
+    <td><%= link_to 'Show', client_video %></td>
+    <td><%= link_to 'Edit', edit_client_video_path(client_video) %></td>
+    <td><%= link_to 'Destroy', client_video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Client video', new_client_video_path(:user_id => @user_id) %>

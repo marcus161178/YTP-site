@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510014040) do
+ActiveRecord::Schema.define(:version => 20130617221422) do
 
   create_table "blog_images", :force => true do |t|
     t.string   "name"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(:version => 20130510014040) do
     t.integer  "post_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "vieworder"
   end
+
+  add_index "blog_images", ["post_id"], :name => "index_blog_images_on_post_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -53,6 +56,20 @@ ActiveRecord::Schema.define(:version => 20130510014040) do
     t.datetime "updated_at",                        :null => false
     t.boolean  "frontslideshow", :default => false
   end
+
+  add_index "client_images", ["user_id"], :name => "index_client_images_on_user_id"
+
+  create_table "client_videos", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+    t.string   "video_type"
+  end
+
+  add_index "client_videos", ["slug"], :name => "index_client_videos_on_slug", :unique => true
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -120,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20130510014040) do
     t.boolean  "admin",                  :default => false
     t.string   "slug"
     t.text     "address"
+    t.boolean  "approved",               :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

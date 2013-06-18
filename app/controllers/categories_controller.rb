@@ -10,7 +10,6 @@ layout "bloglayout"
   def index
 
     @categories = Category.roots.sort_by{|e| e[:name]}
-    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -22,7 +21,7 @@ layout "bloglayout"
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @posts = @category.posts.page(params[:page]).per_page(6)
+    @posts = @category.posts.where(:published => true).where("published_at <= ?", Time.now).page(params[:page]).per_page(6)
 
     respond_to do |format|
       format.html # show.html.erb

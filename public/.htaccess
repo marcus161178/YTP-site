@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST}   !^www\.yaisatangwell\.com$ [NC]
+RewriteCond %{HTTP_HOST}   !^$
+RewriteRule ^(.*)$         http://www.yaisatangwell.com/$1 [R]
+RewriteRule ^blog/about/(.*)$ http://www.yaisatangwell.com/aboutus [R=301]
+RewriteRule ^blog/book-us/(.*)$ http://www.yaisatangwell.com [R=301]
+RewriteRule ^blog/wedding-vendors/(.*)$ http://www.yaisatangwell.com/categories [R=301]
+RewriteRule ^blog/page/(.*)$ http://www.yaisatangwell.com/blog [R=301]
+RewriteRule ^/blog/wp-content/(.*)$ http://www.yaisatangwell.com/blog [R=301]
+RewriteRule ^index2.php$ http://www.yaisatangwell.com [R=301]
+RewriteRule ^index.php$ http://www.yaisatangwell.com [R=301]
+RewriteRule ^contracts/contract.pdf$ http://www.yaisatangwell.com [R=301]
+ErrorDocument 404 /

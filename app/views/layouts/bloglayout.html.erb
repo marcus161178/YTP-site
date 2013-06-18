@@ -7,13 +7,37 @@
    
   
   <%= stylesheet_link_tag "gumby", "home", "flexslider" %>
-  <%= javascript_include_tag "application", "basic", "blog_images", "jquery.flexslider" %>
-  <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
- 
+  <%= javascript_include_tag "application", "page/blog_images" %>
+<%= analytics_init if Rails.env.production? %> 
 
-  
 
-  
+
+<% if @post.blank? || @post.title.blank? || @post.blog_images.blank? %>
+<% @imgs = 0 %>
+<% @fbook_images.each do |fbook_image|%>
+<% if @imgs < 5 %>
+<meta property="og:image" content="http://www.yaisatangwell.com<%= fbook_image.image_url.to_s %>"/>
+<% @imgs = @imgs +1 %>
+<% end %>
+<% end %>
+<meta property="og:title" content="Yaisa Tangwell Photography - Blog" />
+<meta property="og:url" content="http://www.yaisatangwell.com" />
+<meta property="og:description" content="Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. We are based in Trinidad & Tobago and are led by Marcus and Yaisa, a husband and wife team" />
+
+<% else %>
+<% @bimgs = 0 %>
+<% @post.blog_images.shuffle.each do |blog_image| %>
+<% if @bimgs < 5 %>
+<meta property="og:image" content="http://www.yaisatangwell.com<%= blog_image.image_url.to_s %>"/>
+<% @bimgs = @bimgs +1 %>
+<% end %>
+<% end %>
+
+<meta property="og:title" content="Yaisa Tangwell Photography - <%= @post.title.upcase %>" />
+<meta property="og:url" content="http://www.yaisatangwell.com/posts/<%= @post.slug %>" />
+<meta property="og:description" content="<%= @post.title.upcase %> - Published on: <%= @post.published_at.to_date.to_formatted_s(:long_ordinal) %>" />
+<% end %>  
+<meta property="og:type" content="blog" />
   
   <!-- Place in the <head>, after the three links -->
   <script type="text/javascript" charset="utf-8">

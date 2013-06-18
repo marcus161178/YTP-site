@@ -23,13 +23,11 @@
 	<h1>WEDDINGS DECORATED BY <%= @category.name.upcase %> </h1>
 	<% end %>
 	
-	<% if @category.url? %>
-<p>To see more detailed information about this vendor <%= link_to "click here", @category.url %> </p>
-<% end %>
+	<% # if @category.url? <p>To see more detailed information about this vendor  link_to "click here", @category.url  </p> end %>
 
 <% else %>
 <h1> Sorry, we do not have any weddings related to <%= @category.name.upcase %>  </h1>
-<p> Please choose another <%= link_to 'CATEGORY', categories_path %>
+<p> Please choose another <%= link_to 'VENDOR', vendors_path %>
 </p>
 <% end %>
 
@@ -38,20 +36,12 @@
 
 
 <div class="small_posts_div row">
-	<div class="sidebarcontact four columns">
-		<h3>Contact Us</h3>
-		<%= form_tag("email", :method => "post") do %>
-		  <%= label_tag(:q, "Name:") %>
-		  <%= text_field_tag(:q) %>
-		  <%= label_tag(:q, "Wedding Date:") %>
-		  <%= text_field_tag(:q) %>
-		  <%= label_tag(:q, "Email Address:") %>
-		  <%= text_field_tag(:q) %>
-		  <%= submit_tag("Send") %>
-		<% end %>
-		
-	</div><!--four columns-->
-  	
+  <div class="blogbadges four columns nopin">
+        <div class="row agwpja"> <%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com") %></div>
+        <div class="row wpja"><%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com")%></div>
+        <div class="row bestofweddings"><%= link_to(image_tag("assoc/bestofweddingphotography.png"), "http://www.bestofweddingphotography.com/yaisa-tangwell-photography/") %></div>
+        </div>
+	
 	<div class="small_posts_content eight columns">
 		
 		
@@ -96,7 +86,7 @@
   <% end %>
   <%= will_paginate @posts, previous_label: h("Previous"), next_label: h(" More Weddings...") %>
   <% if !@posts.blank?%>
-  <%= link_to 'Back to Categories', categories_path %>
+  <%= link_to 'Back to Vendors Main', vendors_path %>
   <% end %>
   </div>
 

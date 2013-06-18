@@ -6,12 +6,10 @@
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag "gumby", "home", "flexslider"%>
 
-<%= javascript_include_tag "application", "basic", "client_images"%>
-<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+<%= javascript_include_tag "application", "page/client_images"%>
 
   
-  <%= javascript_include_tag "jquery.flexslider" %>
-  
+ <%= analytics_init if Rails.env.production? %> 
   <!-- Place in the <head>, after the three links -->
   <script type="text/javascript" charset="utf-8">
     $(window).load(function() {

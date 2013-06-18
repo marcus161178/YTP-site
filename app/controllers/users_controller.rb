@@ -1,16 +1,17 @@
 class UsersController < ApplicationController
   
-before_filter :authenticate_user!
+# before_filter :authenticate_user!
 load_and_authorize_resource 
   
-layout "homelayout" 
+layout "client_portal" 
  
  
   # GET /users
   # GET /users.json
   def index
     if current_user.admin == true
-    respond_to do |format|
+    
+	respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end

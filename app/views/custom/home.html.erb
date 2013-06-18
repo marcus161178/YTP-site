@@ -1,13 +1,27 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=132757036746170";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="sitecontent">
 	<% unless @blog_images.blank?%>
 	
 		<div id="frontslideshow"><p>
 			<div class="flexslider">
 				<ul class="slides">
-					<% 15.times do %>
+					<% @blog_images.shuffle! %>
+					<% @time = 0 %>
+					<% @blog_images.each do |blog_image|%>
+					<% if @time < 15 %>
 					<li>
-						<%= image_tag @blog_images.sample.image_url.to_s %>
+						<%= image_tag blog_image.image_url.to_s %>
 					</li>
+					<% @time = @time + 1%>
+					<% end %>
 					<% end %>
 				</ul>
 			</div>
@@ -17,10 +31,24 @@
 		
 		
 <div class="subheading row">	
-	<div class="subtitle twelve columns">	
+
+
+	<div class="subtitle twelve columns">
+<div class="fb-like" data-href="http://www.yaisatangwell.com" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="tall" data-annotation="inline" data-width="300"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 <h1 >WELCOME TO YAISA TANGWELL PHOTOGRAPHY</h1>
-<br/>
-<p >Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. <br/> We are based in Trinidad &amp; Tobago and are led by Marcus and Yaisa, a husband and wife team.<%= link_to "..see more", aboutus_path %></p>
+<p >Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. <br/>
+We are based in Trinidad &amp; Tobago and are led by Marcus and Yaisa, a husband and wife team.<%= link_to "..see more", aboutus_path %></p>
 	</div><!--.subtitle -->
 </div><!--.subheading -->
 

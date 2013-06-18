@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   layout "bloglayout"
   
   def unpublished
-    @posts = Post.where(:published => false).page(params[:page]).per(6)
+    @posts = Post.where(:published => false).page(params[:page]).per_page(6)
     @blogimage = BlogImage.all
 
     respond_to do |format|
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
   
   def scheduled
-    @posts = Post.where(:published => true).where("published_at > ?", Time.now).page(params[:page]).per(6)
+    @posts = Post.where(:published => true).where("published_at > ?", Time.now).page(params[:page]).per_page(6)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -29,13 +29,10 @@ class PostsController < ApplicationController
   
   def index
     
-    @page = params[:page]
-    if @page.blank?
-    @page = 1 
-    end
-      
-    @posts = Post.where(:published => true).where("published_at <= ?", Time.now).where('id != ?', Post.first.id).page(params[:page]).per_page(6)
-    @recentpost = Post.first
+    @page = params[:page].to_i
+     
+@recentpost = Post.where(:published => true).where("published_at <= ?", Time.now).first 
+    @posts = Post.where(:published => true).where("published_at <= ?", Time.now).where('id != ?', @recentpost.id).page(params[:page]).per_page(6)
     
    
     
