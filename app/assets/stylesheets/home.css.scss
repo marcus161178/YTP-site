@@ -75,10 +75,12 @@ margin-left: 50px;
 	ul {
 		display: inline-block;
 		padding: 0px;
+		li .dropdown {
+			max-width: 180px;
+		}
 		
 	}
 }
-
 
 .smallnav .navbar {
 	margin-top:5px;
@@ -90,6 +92,9 @@ margin-left: 50px;
 	padding: 0px 0px 0px 80px;
 	li a {
 		padding: 0px 10px;
+	}
+	li .dropdown ul {
+		padding: 0px;
 	}
 }
 }
@@ -228,20 +233,22 @@ text-align: center;
 }
 
 .btmlink1.three.columns {
-	padding-left: 55px;
+	padding-left: 40px;
+	margin-left: 30px;
 }
 
 .btmlink2.three.columns {
-	padding-left: 75px;
+	padding-left: 40px;
+	margin-left: 5px;
 }
 
 
 .btmlink3.three.columns {
-	padding-left: 75px;
+	padding-left: 35px;
 }
 
 .btmlink4.three.columns {
-	padding-left: 65px;
+	padding-right: 20px;
 }
 
 .frontpic {
@@ -298,6 +305,10 @@ text-align: center;
 		padding-left:25px;
 		
 	}
+}
+
+.subcategories {
+	padding-top: 30px;
 }
 
 .mainpost {

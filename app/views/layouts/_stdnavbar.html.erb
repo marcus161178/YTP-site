@@ -6,7 +6,18 @@
 			<li ><%= link_to "HOME", root_path %></li>
 			<li ><%= link_to "WEDDINGS", weddings_path %></li>
 			<li ><%= link_to "CINEMATOGRAPHY", cinematography_path %></li>
-			<li ><%= link_to "VENDORS", vendors_path %></li>
+			<li ><%= link_to "VENDORS", vendors_path %>
+			<div class="dropdown">
+		        	<ul>
+						<% @cats.sort_by!{ |m| m.name.downcase }.each do |category| %>
+						<li><%= link_to truncate(category.name.pluralize,:length => 18), category %></li>
+						<% end %>
+						
+			  		</ul>
+		  		</div>
+      
+      
+      </li>
 			<li>
 				<% unless user_signed_in? %>
 			<%= link_to "CLIENTS", new_user_session_path %>

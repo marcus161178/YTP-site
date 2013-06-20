@@ -2,6 +2,9 @@ Proofing::Application.routes.draw do
 
 
 
+  resources :subcategories, :path => "vendor"
+
+
   resources :client_videos
 
 

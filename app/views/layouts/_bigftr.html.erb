@@ -7,46 +7,36 @@
 
 
 	<div class="btmlink1 three columns">
-		<h3 class="widget-title">RECEPTION VENUES</h3>
+		<h3 class="widget-title"><%= truncate(@category1.name.pluralize.upcase, :length => 20) %></h3>
 		<ul>
-			<% @receptvenues.shuffle! %>
-			<% @receptvenues[(0..3)].each do |venue| %>			
-			<li class=""> <%= link_to truncate(venue.name.upcase, :length => 20), venue %></li>
+			<% @category1.subcategories.shuffle![(0..3)].each do |subcategory1| %>			
+			<li class=""> <%= link_to truncate(subcategory1.name.upcase, :length => 22), subcategory1 %></li>
 			<% end %>
-			<li><%= link_to '...see more', vendors_path %></li>
+			<li><%= link_to '...see more', category_path(@category1) %></li>
 			
 		</ul>	
 		</div><!-- .first -->
 	
-	
-
 	<div class="btmlink2 three columns">
-		<h3 class="widget-title">COUNTRY</h3>
+		<h3 class="widget-title"><%= truncate(@category2.name.pluralize.upcase, :length => 20) %></h3>
 		<ul>	
-			<% @ctry.shuffle! %>
-			<% @ctry[(0..3)].each do |ctry| %>			
-			<li class=""> <%= link_to ctry.name.upcase, ctry %></li>
+			<% @category2.subcategories.shuffle![(0..3)].each do |subcategory2| %>			
+			<li class=""> <%= link_to truncate(subcategory2.name.upcase, :length => 22), subcategory2 %></li>
 			<% end %>
-			<li><%= link_to '...see more', vendors_path %></li>
+			<li><%= link_to '...see more', category_path(@category2) %></li>
 		</ul>	
 </div><!-- .second -->
 
-
-
-
         <div class="btmlink3 three columns">
-               <h3 class="widget-title">CEREMONY TYPE</h3>
+               <h3 class="widget-title"><%= truncate(@category3.name.pluralize.upcase, :length => 20) %></h3>
 			   <ul>	
-	   			<% @cmony.shuffle!  %>
-				<% @cmony[(0..3)].each do |ceremony| %>			
-	   			<li class=""> <%= link_to ceremony.name.upcase, ceremony %></li>
+				<% @category3.subcategories.shuffle[(0..3)].each do |subcategory3| %>			
+	   			<li class=""> <%= link_to truncate(subcategory3.name.upcase, :length => 22), subcategory3 %></li>
 	   			<% end %>
-	   			<li><%= link_to '...see more', vendors_path %></li>
+	   			<li><%= link_to '...see more', category_path(@category3) %></li>
 			</ul>       
 		</div><!-- .third -->
 
-
-    
         <div class="btmlink4 three columns">
       	  <h3 class="">RECENT POSTS</h3>
 		<ul>

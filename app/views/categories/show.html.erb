@@ -1,93 +1,35 @@
 <div class="post_category_head">
-	<% if !@posts.blank? %>
+<h1><%= @category.name.pluralize.upcase %></h1>
 	
-	<% if @category.parent.name == "Ceremony Venue" || @category.parent.name == "Reception Venue" %>
-	<h1>VIEW WEDDINGS HELD AT <%= @category.name.upcase %> </h1>
-	<% end %>
-	<% if @category.parent.name == "Country"  %>
-	<h1>VIEW WEDDINGS HELD IN <%= @category.name.upcase %> </h1>
-	<% end %>
-	<% if @category.parent.name == "Ceremony Type" %>
-	<h1>VIEW ALL OF OUR <%= @category.name.upcase %> WEDDINGS </h1>
-	<% end %>
-	<% if @category.parent.name == "Make-up Artist" %>
-	<h1>VIEW WEDDINGS WHERE THE BRIDE WAS MADE-UP BY <%= @category.name.upcase %> </h1>
-	<% end %>
-	<% if @category.parent.name == "Wedding Dress" %>
-	<h1>VIEW WEDDINGS WHERE THE BRIDE WORE <%= @category.name.upcase %> </h1>
-	<% end %>
-	<% if @category.parent.name == "Portraits Location" %>
-	<h1>VIEW WEDDINGS WHERE WE TOOK PORTRAITS AT <%= @category.name.upcase %> </h1>
-	<% end %>
-	<% if @category.parent.name == "Decorator" %>
-	<h1>WEDDINGS DECORATED BY <%= @category.name.upcase %> </h1>
-	<% end %>
-	
-	<% # if @category.url? <p>To see more detailed information about this vendor  link_to "click here", @category.url  </p> end %>
-
-<% else %>
-<h1> Sorry, we do not have any weddings related to <%= @category.name.upcase %>  </h1>
-<p> Please choose another <%= link_to 'VENDOR', vendors_path %>
-</p>
-<% end %>
-
-</div>
-
-
-
-<div class="small_posts_div row">
-  <div class="blogbadges four columns nopin">
-        <div class="row agwpja"> <%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com") %></div>
-        <div class="row wpja"><%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com")%></div>
-        <div class="row bestofweddings"><%= link_to(image_tag("assoc/bestofweddingphotography.png"), "http://www.bestofweddingphotography.com/yaisa-tangwell-photography/") %></div>
-        </div>
-	
-	<div class="small_posts_content eight columns">
+<div class= "category_content row">
+	 <div class= "category nopin six columns push_one">
+		 
 		
-		
-	<% @posts.each_slice(2) do |slice| %>
-		
-		<div class="row">
-			<% slice.each do |post| %>
-			
-				<div class="smallpost six columns">
-   	 		   	 <h3><%= link_to post.title.upcase, post, :class => "post-title"  %></h3>
-				 <div class="ifcan">
-					<% if can? :update, @posts %>
-			  	   		<%= link_to 'Edit', edit_post_path(post) %> | 
-    					<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%= image_tag "category/"+@category.name.gsub(' ', '').downcase+".jpg",  :class => "categoryphoto" %>
+  	</div>
+    <div class="subcategories five columns nopin">
+    <ul>
+			<% @subcategories.sort_by!{ |m| m.name.downcase }.each do |subcategory| %>
+      	
+				<li>
+					<%= link_to subcategory.name.upcase, subcategory %> 
+					<% if can? :update, @category %>
+		    			|<%= link_to 'Edit', edit_subcategory_path(subcategory) %> | 
+		    			<%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %>
 					<% end %>
-				</div>
-				 <h4>Published on: <%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></h4>
-			   <% unless post.blog_images.first.blank? %>
-			   <%=  link_to image_tag(post.blog_images.sample.image_url(:small).to_s), post %>
-   				<% end %>
-			   
-	   			
-    		   <p><%= truncate(post.body, :length => 60) %>...<%= link_to 'see more', post %></p>
-			   
-			   
-			</div>
+				</li>
 			<% end %>
-			
-		</div>
-		
-	<% end %>
-
-  
-	</div><!--eight columns-->
-  </div>
+		</ul>
+  	</div>
+  </div>  
   
 	
   <div class="paginate">
-  <% if can? :update, @posts %>
+  <% if can? :update, @category %>
   <%= link_to 'Edit', edit_category_path(@category) %> |
-	
-  <% end %>
-  <%= will_paginate @posts, previous_label: h("Previous"), next_label: h(" More Weddings...") %>
-  <% if !@posts.blank?%>
-  <%= link_to 'Back to Vendors Main', vendors_path %>
-  <% end %>
+	 <% end %>
+  <%= will_paginate @subcategories, previous_label: h("Previous"), next_label: h("More #{@category.name.pluralize}...") %>
+  <%= link_to 'See all Vendor Categories', vendors_path %>
   </div>
 
 

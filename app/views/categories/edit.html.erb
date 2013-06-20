@@ -11,42 +11,31 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
+
   <div class="row">
 	  
-    <div class="five columns">
-		<% if @category.is_root? %>
-  	  <h2>Existing Sub-Categories</h2>
-  	  <ul>
-  	  <% @category.children.each do |childcat| %>
-  	  <li><%= link_to childcat.name, edit_category_path(:id => childcat.id) %></li>
-  	  <% end %>
-	  <% end %>
-    </ul>
-	
-  </div>
-
   <div class="seven columns">
-    <%= f.label "Edit Category/Sub-category Name" %><br />
     <%= f.text_field :name %>
-	<% unless @category.is_root? %>
-    <%= f.label "Downdaisle url" %>
-    <%= f.text_field :url, :size => 40 %>
-	<% end %>  
   <%= f.submit %>
- 	<% if @category.is_root?%>
-  <%= link_to "Add Sub Categories", new_category_path(:ancestry => @category.id)%>
-  <% end %>
   
 </div>
-  
-  
-<% end %>
 
- 
+  <div class="five columns">
+	  <h2>Existing Sub-Categories</h2>
+	  <ul>
+	  <% @category.subcategories.each do |subcategory| %>
+	  <li><%= link_to subcategory.name, edit_subcategory_path(subcategory) %></li>
+   <% end %>
+  </ul>
+  <%= link_to "Add Sub Categories", new_subcategory_path(:cat_id => @category.id) %>
+
+</div>
+</div>
+
   
- 
   
   
 <%= link_to 'Show', @category %> |
 <%= link_to 'Back', categories_path %>
+<% end %>

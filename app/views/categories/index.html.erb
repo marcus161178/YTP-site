@@ -4,33 +4,21 @@
 
 <div class="category_content">
 
-<% @categories.each_slice(2) do |slice| %>
+<% @categories.sort_by!{ |m| m.name.downcase }.each_slice(2) do |slice| %>
 
 <div class= "row">
    <% slice.each do |category| %>
-  
-	 <div class= "category six columns">
+	 <div class= "category six columns nopin">
 		 
-    	<h3><%= category.name.pluralize.upcase %></h3>
+    	<h3><%= link_to category.name.pluralize.upcase, category_path(category) %></h3>
 		
-		<%= image_tag "category/"+category.name.gsub(' ', '').downcase+".jpg",  :class => "categoryphoto" %>
-		<li>
-			<% category.children.sort_by!{ |m| m.name.downcase }.each do |child| %>
-				<ul>
-					<%= link_to child.name.upcase, child %> 
-					<% if can? :update, @category %>
-		    			|<%= link_to 'Edit', edit_category_path(child) %> | 
-		    			<%= link_to 'Destroy', child, method: :delete, data: { confirm: 'Are you sure?' } %>
-					<% end %>
-				</ul>
-			<% end %>
-		</li>
+		<%= link_to image_tag("category/"+category.name.gsub(' ', '').downcase+".jpg",  :class => "categoryphoto"), category_path(category) %>
+		
 			<% if can? :update, @category %>
     			<%= link_to 'Edit Main Category', edit_category_path(category) %> |
     			<%= link_to 'Destroy Main Category', category, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
 	</div>
-
 	<% end %>
 	
 	

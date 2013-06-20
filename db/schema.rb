@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617221422) do
+ActiveRecord::Schema.define(:version => 20130619235916) do
+
+  create_table "Categories", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
+  add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
+
+  create_table "Categorizations", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "subcategory_id"
+    t.integer  "subcategorization_id"
+  end
+
+  add_index "categorizations", ["post_id"], :name => "index_categorizations_on_post_id"
+  add_index "categorizations", ["subcategorization_id"], :name => "index_categorizations_on_subcategorization_id"
+  add_index "categorizations", ["subcategory_id"], :name => "index_categorizations_on_subcategory_id"
 
   create_table "blog_images", :force => true do |t|
     t.string   "name"
@@ -23,29 +46,6 @@ ActiveRecord::Schema.define(:version => 20130617221422) do
   end
 
   add_index "blog_images", ["post_id"], :name => "index_blog_images_on_post_id"
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "ancestry"
-    t.string   "slug"
-  end
-
-  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
-  add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
-  add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
-
-  create_table "categorizations", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
-  add_index "categorizations", ["post_id"], :name => "index_categorizations_on_post_id"
 
   create_table "client_images", :force => true do |t|
     t.string   "name"
@@ -70,15 +70,6 @@ ActiveRecord::Schema.define(:version => 20130617221422) do
   end
 
   add_index "client_videos", ["slug"], :name => "index_client_videos_on_slug", :unique => true
-
-  create_table "comments", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.text     "body"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "galleries", :force => true do |t|
     t.string   "name"
@@ -111,6 +102,26 @@ ActiveRecord::Schema.define(:version => 20130617221422) do
 
   add_index "posts", ["slug"], :name => "index_posts_on_slug", :unique => true
   add_index "posts", ["title"], :name => "index_posts_on_title", :unique => true
+
+  create_table "subcategories", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "subcategories", ["slug"], :name => "index_subcategories_on_slug", :unique => true
+
+  create_table "subcategorizations", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "subcategory_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "subcategorizations", ["category_id"], :name => "index_subcategorizations_on_category_id"
+  add_index "subcategorizations", ["subcategory_id"], :name => "index_subcategorizations_on_subcategory_id"
 
   create_table "users", :force => true do |t|
     t.string   "bride_first_name"

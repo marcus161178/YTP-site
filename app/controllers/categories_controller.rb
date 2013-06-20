@@ -8,8 +8,8 @@ load_and_authorize_resource
 layout "bloglayout"
   
   def index
-
-    @categories = Category.roots.sort_by{|e| e[:name]}
+    
+    @categories = Category.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +21,8 @@ layout "bloglayout"
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @posts = @category.posts.where(:published => true).where("published_at <= ?", Time.now).page(params[:page]).per_page(6)
+    @subcategories = @category.subcategories.page(params[:page]).per_page(8)
+    @posts = @category.posts.where(:published => true).where("published_at <= ?", Time.now)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,15 +33,7 @@ layout "bloglayout"
   # GET /categories/new
   # GET /categories/new.json
   def new
-    unless params[:ancestry].blank?
-      @category = Category.new(:ancestry => params[:ancestry]) 
-      @childcats = Category.find(params[:ancestry]).children
-      @subtext = "Sub"
-    end
-    if params[:ancestry].blank?
       @category = Category.new()
-      @rootcats = Category.roots
-    end
     
 
 

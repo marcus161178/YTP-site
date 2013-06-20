@@ -70,6 +70,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @categories = Category.all
+    @subcategories = Subcategory.all
     @post.blog_images.build
     
 

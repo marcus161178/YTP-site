@@ -21,12 +21,13 @@
   	  	</div>
   
   	  	<div class="input">
-	 	   <% @categories.each do |category| %>
-	 	 		<% unless category.children.blank? %>
-   	 	 			<%= f.label category.name %>
-					<%= f.collection_select :category_ids, category.children.all, :id, :name, {}, { :multiple => true } %>
-				<% end %>
-			<% end %>
+        <% @categories.each do |category| %>
+          <% unless category.subcategories.blank?%>
+            <%= f.label category.name %>
+            <%= f.collection_select :subcategorization_ids, category.subcategorizations.all, :id, :subcategory_name, {}, { :multiple => true } %>
+ 	          <% end %>
+	        <% end %>
+      
 		</div>
   	  	<div>
 			<%= f.label :published %>

@@ -52,9 +52,12 @@ DRAFT POST
 	  
 <div class="singlepost_vendors">
 	  
- <% @post.categories.each do |category| %>
-<p>| <%= category.parent.name %> : <%= link_to category.name, category_path(category) %> |</p>
+ <% @post.subcategorizations.each do |subcategorization| %>
+
+<p>| <%= subcategorization.category.name %> : <%= link_to subcategorization.subcategory.name, subcategory_path(subcategorization.subcategory) %> |</p>
+
 <% end %>
+
 <p>If you were a vendor involved at this wedding please <%=link_to "contact us", contact_path %><p>
 </div>
 <div class= "row" >

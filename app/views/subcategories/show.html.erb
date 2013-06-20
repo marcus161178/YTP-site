@@ -1,0 +1,82 @@
+<div class="post_category_head">
+	<% unless @posts.blank? %>
+	
+  	<h1>VIEW ALL WEDDINGS RELATED TO <%= @subcategory.name.upcase %> </h1>
+  	
+    
+<% else %>
+    <h1> Sorry, we do not have any weddings related to <%= @subcategory.name.upcase %>  </h1>
+    <p> Please choose another <%= link_to 'VENDOR', vendors_path %>
+    </p>    
+    
+    <% end %>
+  
+
+	
+	<% if @subcategory.url? %>
+    <p>To see more detailed information about this vendor <%link_to "click here", @subcategory %>  </p> 
+    <% end %>
+
+
+
+</div>
+
+
+
+<div class="small_posts_div row">
+  <div class="blogbadges four columns nopin">
+        <div class="row agwpja"> <%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com") %></div>
+        <div class="row wpja"><%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com")%></div>
+        <div class="row bestofweddings"><%= link_to(image_tag("assoc/bestofweddingphotography.png"), "http://www.bestofweddingphotography.com/yaisa-tangwell-photography/") %></div>
+        </div>
+	
+	<div class="small_posts_content eight columns">
+		
+		
+	<% @posts.uniq.each_slice(2) do |slice| %>
+		
+		<div class="row">
+			<% slice.each do |post| %>
+			
+				<div class="smallpost six columns">
+   	 		 <h3><%= link_to post.title.upcase, post, :class => "post-title"  %></h3>
+				 <div class="ifcan">
+					<% if can? :update, @posts %>
+			  	   		<%= link_to 'Edit', edit_post_path(post) %> | 
+    					<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
+				</div>
+				 <h4>Published on: <%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></h4>
+			   <% unless post.blog_images.first.blank? %>
+			   <%=  link_to image_tag(post.blog_images.sample.image_url(:small).to_s), post %>
+   				<% end %>
+			   
+	   			
+    		   <p><%= truncate(post.body, :length => 60) %>...<%= link_to 'see more', post %></p>
+			   
+			   
+			</div>
+			<% end %>
+			
+		</div>
+		
+	<% end %>
+
+  
+	</div><!--eight columns-->
+  </div>
+  
+	
+  <div class="paginate">
+  <% if can? :update, @posts %>
+  <%= link_to 'Edit', edit_subcategory_path(@subcategory) %> |
+	
+  <% end %>
+  <%= will_paginate @posts, previous_label: h("Previous"), next_label: h(" More Weddings...") %>
+  <% if !@posts.blank?%>
+  <%= link_to 'Back to Vendors Main', vendors_path %>
+  <% end %>
+  </div>
+
+
+
