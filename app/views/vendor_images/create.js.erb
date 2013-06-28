@@ -1,0 +1,5 @@
+<% if @vendor_image.new_record? %>
+  alert("Failed to upload Vendor Image: <%= j @vendor_image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#vendor_images").append("<%= j render(@vendor_image) %>");
+<% end %>

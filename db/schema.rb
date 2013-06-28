@@ -11,9 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619235916) do
+ActiveRecord::Schema.define(:version => 20130623152538) do
 
-  create_table "Categories", :force => true do |t|
+  create_table "blog_images", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "post_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "vieworder"
+    t.boolean  "frontpage",  :default => true
+  end
+
+  add_index "blog_images", ["post_id"], :name => "index_blog_images_on_post_id"
+
+  create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "url"
     t.datetime "created_at", :null => false
@@ -24,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130619235916) do
   add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
   add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
-  create_table "Categorizations", :force => true do |t|
+  create_table "categorizations", :force => true do |t|
     t.integer  "post_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
@@ -35,17 +47,6 @@ ActiveRecord::Schema.define(:version => 20130619235916) do
   add_index "categorizations", ["post_id"], :name => "index_categorizations_on_post_id"
   add_index "categorizations", ["subcategorization_id"], :name => "index_categorizations_on_subcategorization_id"
   add_index "categorizations", ["subcategory_id"], :name => "index_categorizations_on_subcategory_id"
-
-  create_table "blog_images", :force => true do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "vieworder"
-  end
-
-  add_index "blog_images", ["post_id"], :name => "index_blog_images_on_post_id"
 
   create_table "client_images", :force => true do |t|
     t.string   "name"
@@ -106,9 +107,13 @@ ActiveRecord::Schema.define(:version => 20130619235916) do
   create_table "subcategories", :force => true do |t|
     t.string   "name"
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "slug"
+    t.string   "email"
+    t.text     "description"
+    t.integer  "phone_number"
+    t.string   "website"
   end
 
   add_index "subcategories", ["slug"], :name => "index_subcategories_on_slug", :unique => true
@@ -155,6 +160,14 @@ ActiveRecord::Schema.define(:version => 20130619235916) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "vendor_images", :force => true do |t|
+    t.string   "name"
+    t.integer  "subcategory_id"
+    t.string   "portfolio"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "videos", :force => true do |t|
     t.string   "name"

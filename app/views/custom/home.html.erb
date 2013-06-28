@@ -8,25 +8,19 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="sitecontent">
-	<% unless @blog_images.blank?%>
-	
-		<div id="frontslideshow"><p>
+	<div id="flex">
+  		<div id="frontslideshow"><p>
 			<div class="flexslider">
-				<ul class="slides">
-					<% @blog_images.shuffle! %>
-					<% @time = 0 %>
+				<ul class="slides nopin">
 					<% @blog_images.each do |blog_image|%>
-					<% if @time < 15 %>
 					<li>
 						<%= image_tag blog_image.image_url.to_s %>
 					</li>
-					<% @time = @time + 1%>
-					<% end %>
 					<% end %>
 				</ul>
 			</div>
 		</div><!--frontslideshow -->
-		<% end %>
+    </div>
 		
 		
 		
@@ -46,8 +40,8 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
-<h1 >WELCOME TO YAISA TANGWELL PHOTOGRAPHY</h1>
-<p >Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. <br/>
+<h1>WELCOME TO YAISA TANGWELL PHOTOGRAPHY</h1>
+<h2>Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. </h2>
 We are based in Trinidad &amp; Tobago and are led by Marcus and Yaisa, a husband and wife team.<%= link_to "..see more", aboutus_path %></p>
 	</div><!--.subtitle -->
 </div><!--.subheading -->
@@ -56,7 +50,7 @@ We are based in Trinidad &amp; Tobago and are led by Marcus and Yaisa, a husband
 	<div class="leftcontent six columns nopin">
 		<div class="row">
 			<div class="agwpja six columns">
-				<%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com") %>
+				<%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com/artistic-wedding-photojournalism/5318-port-of-spain-weddings/photographer-yaisa-tangwell.html") %>
 			</div>
 			<div class="bestofweddingphotography six columns">
 				<%= link_to(image_tag("assoc/bestofweddingphotography.png"), "http://www.bestofweddingphotography.com/yaisa-tangwell-photography/") %>
@@ -65,7 +59,7 @@ We are based in Trinidad &amp; Tobago and are led by Marcus and Yaisa, a husband
 		<div class="row">
 		<br/>
 			<div class="wpja">
-				<%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com")%>
+				<%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com/wedding-photojournalism/5660-trinidad--tobago-weddings/photographer-yaisa-tangwell.html")%>
 			</div>
 		</div >
 	

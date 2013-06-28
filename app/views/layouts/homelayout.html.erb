@@ -1,38 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-  <title>Yaisa Tangwell Photography</title>
+<title>Yaisa Tangwell Photography - <%= title %></title>
   <%= csrf_meta_tag %>
   <%= favicon_link_tag 'favicon.ico' %>
   
   <%= stylesheet_link_tag "application", "gumby", "home", "flexslider"%>
-  <%= javascript_include_tag "application", "page/contact" %>
+  <%= javascript_include_tag "application", "page/contact", "js/modernizr-2.6.2.min" %>
 
 <%= analytics_init if Rails.env.production? %>    
 
-<% @imgs = 0 %>
 <% @fbook_images.each do |fbook_image|%>
-<% if @imgs < 5 %>
 <meta property="og:image" content="http://www.yaisatangwell.com<%= fbook_image.image_url.to_s %>"/>
-<% @imgs = @imgs +1 %>
-<% end %>
 <% end %>
 <meta property="og:title" content="Yaisa Tangwell Photography" />
 <meta property="og:url" content="http://www.yaisatangwell.com" />
 <meta property="og:site_name" content="Yaisa Tangwell Photography" />
 <meta property="og:type" content="blog" />
 <meta property="og:description" content="Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. We are based in Trinidad & Tobago and are led by Marcus and Yaisa, a husband and wife team" />
+<script>
 
+function executeQuery() {
+  var $mydiv = $('#flex');
+  $mydiv.css('height', $mydiv.height() );
+  $.ajax({
+    //url: '/',
+    success: function(data) {
+      $('#flex').load('/ #frontslideshow')
+    }
+  });
+  setTimeout(executeQuery, 40000);
+}
+$(document).ajaxComplete(function(){
+  var $mydiv = $('#flex');  
+ $('.flexslider').flexslider({
+ start: function(slider) {
+   $mydiv.css({height: "auto"});
+       }
   
- <!-- Place in the <head>, after the three links -->
- <script type="text/javascript" charset="utf-8">
-   $(window).load(function() {
-     $('.flexslider').flexslider();
-   });
- </script>
+});
+});
+
+
+$(document).ready(function() {
+	 $('.flexslider').flexslider();
+  setTimeout(executeQuery, 40000);
+});
+</script>
 </head>
  
-  <body class="" >
+<body class="" >
   	
 
 

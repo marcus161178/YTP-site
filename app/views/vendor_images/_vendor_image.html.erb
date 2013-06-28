@@ -1,0 +1,7 @@
+ 
+  <%= image_tag vendor_image.portfolio_url.to_s %>
+
+  <% if can? :update, @subcategories %>
+  <%= vendor_image.name %>
+  <%= link_to "remove", vendor_image, :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>

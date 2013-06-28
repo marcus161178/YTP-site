@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :footer_variables
   
   def footer_variables
-    @fbook_images = BlogImage.all
+  @fbook_images = BlogImage.randomblogimages(5)
 	@rposts = Post.where(:published => true).where("published_at <= ?", Time.now)
   @cats = Category.all
   
@@ -21,13 +21,10 @@ if category.subcategories.size > 3
     else @category3.blank?
         @category3 = category
       end
-    end
-  
-  
-
-end
-end
-
-   
+        end
+     end
+    end  
   end
+  
+  
 end

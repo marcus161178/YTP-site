@@ -22,6 +22,8 @@ gem 'yaml_db'
 gem 'fog'
 gem 'google-analytics-rails'
 gem 'sitemap_generator'
+gem "best_in_place"
+gem 'honeypot-captcha'
 
 # Gems used only for assets and not required
 # in production environments by default.

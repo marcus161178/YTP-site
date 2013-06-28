@@ -4,7 +4,7 @@ class CustomController < ApplicationController
     layout "homelayout"
     
   def home
-    @blog_images = BlogImage.all
+    @blog_images = BlogImage.randomblogimages(6)
     
     
     respond_to do |format|

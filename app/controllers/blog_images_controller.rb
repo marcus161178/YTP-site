@@ -1,16 +1,16 @@
 class BlogImagesController < ApplicationController
   # GET /blog_images
   # GET /blog_images.json
+  respond_to :html, :json
+  
   
   before_filter :authenticate_user!
   load_and_authorize_resource
   
   
-  def index
-    @blog_images = Post.find(params[:id].to_i).blog_images
-    @post_id = params[:id].to_i
+  def index   
+    @blog_images = BlogImage.paginate(:page => params[:page], :per_page => 40)
     
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @blog_images }
@@ -69,10 +69,10 @@ class BlogImagesController < ApplicationController
     respond_to do |format|
       if @blog_image.update_attributes(params[:blog_image])
         format.html { redirect_to @blog_image.post, notice: 'Blog image was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@blog_image) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @blog_image.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@blog_image) }
       end
     end
   end

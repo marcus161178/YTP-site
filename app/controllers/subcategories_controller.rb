@@ -1,12 +1,21 @@
 class SubcategoriesController < ApplicationController
   # GET /subcategories
   # GET /subcategories.json
+  before_filter :authenticate_user!, :except => [:show]
+
+  load_and_authorize_resource
+  
+  
   def index
+    unless current_user.admin?
+      redirect_to categories_path
+    else
     @subcategories = Subcategory.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @subcategories }
+    end
     end
   end
 
@@ -14,7 +23,9 @@ class SubcategoriesController < ApplicationController
   # GET /subcategories/1.json
   def show
     @subcategory = Subcategory.find(params[:id])
-    @posts = @subcategory.posts.where(:published => true).where("published_at <= ?", Time.now).page(params[:page]).per_page(6)
+    @message = Message.new
+    
+    @posts = @subcategory.posts.where(:published => true).where("published_at <= ?", Time.now).paginate(:page => params[:page], :per_page => 6)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +38,7 @@ class SubcategoriesController < ApplicationController
   def new
     @subcategory = Subcategory.new
     @categories = Category.all
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +50,9 @@ class SubcategoriesController < ApplicationController
   def edit
     @subcategory = Subcategory.find(params[:id])
     @category = Category.all
+    @vendor_images = @subcategory.vendor_images
+    
+    
     
   end
 
@@ -84,4 +99,7 @@ class SubcategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  
 end

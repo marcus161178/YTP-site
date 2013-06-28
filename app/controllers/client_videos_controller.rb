@@ -7,7 +7,7 @@ before_filter :authenticate_user!
 layout 'client_portal'
 
   def index
-@client_videos = User.find(params[:id].to_i).client_videos.page(params[:page]).per_page(60)
+@client_videos = User.find(params[:id].to_i).client_videos.paginate(:page => params[:page], :per_page => 6)
      @user_id = params[:id].to_i
      @user = User.find(@user_id)
 

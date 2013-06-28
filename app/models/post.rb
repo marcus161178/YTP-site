@@ -20,7 +20,24 @@ class Post < ActiveRecord::Base
   # named_scope :published, :conditions => "published_at <= now()"
   
 #  scope :by_category_id, lambda {|cid| joins(:categories).where(['categories.id =?', cid])}
+
+
+
+def self.search(search)
+    where('title LIKE ?', "%#{search}%").where(:published => true).where("published_at <= ?", Time.now)
+end
+
+def self.fromsecond(recent)
+  where(:published => true).where("published_at <= ?", Time.now).where('id != ?', recent.id)
   
+end
+
+def self.published
+  where(:published => true).where("published_at <= ?", Time.now)
+  
+end
+
+
   extend FriendlyId
     friendly_id :title, use: :slugged
   end

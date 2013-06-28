@@ -1,9 +1,12 @@
 ActionMailer::Base.smtp_settings = {
-
-  :address => "127.0.0.1",
-  :port    => 25,
-  :domain  => 'thepouitree.com'
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "yaisatangwell.com",
+  :user_name            => "info@yaisatangwell.com",
+  :password             => "Orenishi65",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
 }
 
 
-ActionMailer::Base.default_url_options[:host] = "thepouitree.com"
+ActionMailer::Base.default_url_options[:host] = "localhost:3000"

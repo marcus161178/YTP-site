@@ -1,0 +1,27 @@
+<h1>Listing vendor_images</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Subcategory</th>
+    <th>Portfolio</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vendor_images.each do |vendor_image| %>
+  <tr>
+    <td><%= vendor_image.name %></td>
+    <td><%= vendor_image.subcategory_id %></td>
+    <td><%= vendor_image.portfolio %></td>
+    <td><%= link_to 'Show', vendor_image %></td>
+    <td><%= link_to 'Edit', edit_vendor_image_path(vendor_image) %></td>
+    <td><%= link_to 'Destroy', vendor_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vendor image', new_vendor_image_path %>

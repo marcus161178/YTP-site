@@ -1,3 +1,5 @@
+<%= content_for(:title) { " #{current_user.bride_first_name} & #{current_user.groom_first_name}"  } %>
+
 <h1>WELCOME <%= current_user.bride_first_name.upcase %> & <%= current_user.groom_first_name.upcase %> </h1>
 
 <div id="frontslideshow"><p>

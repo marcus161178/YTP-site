@@ -21,7 +21,7 @@ layout "bloglayout"
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @subcategories = @category.subcategories.page(params[:page]).per_page(8)
+    @subcategories = @category.subcategories.paginate(:page => params[:page], :per_page => 8)
     @posts = @category.posts.where(:published => true).where("published_at <= ?", Time.now)
 
     respond_to do |format|

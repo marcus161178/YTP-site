@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-  <title>Yaisa Tangwell Photography</title>
+<title>Yaisa Tangwell Photography - <%= title %></title>
   <%= csrf_meta_tag %>
   <%= favicon_link_tag 'favicon.ico' %>
    
@@ -13,24 +13,16 @@
 
 
 <% if @post.blank? || @post.title.blank? || @post.blog_images.blank? %>
-<% @imgs = 0 %>
 <% @fbook_images.each do |fbook_image|%>
-<% if @imgs < 5 %>
 <meta property="og:image" content="http://www.yaisatangwell.com<%= fbook_image.image_url.to_s %>"/>
-<% @imgs = @imgs +1 %>
-<% end %>
 <% end %>
 <meta property="og:title" content="Yaisa Tangwell Photography - Blog" />
 <meta property="og:url" content="http://www.yaisatangwell.com" />
 <meta property="og:description" content="Yaisa Tangwell photography specialises in Wedding Photography in the Caribbean. We are based in Trinidad & Tobago and are led by Marcus and Yaisa, a husband and wife team" />
 
 <% else %>
-<% @bimgs = 0 %>
-<% @post.blog_images.shuffle.each do |blog_image| %>
-<% if @bimgs < 5 %>
+<% @post.blog_images.sample(5).each do |blog_image| %>
 <meta property="og:image" content="http://www.yaisatangwell.com<%= blog_image.image_url.to_s %>"/>
-<% @bimgs = @bimgs +1 %>
-<% end %>
 <% end %>
 
 <meta property="og:title" content="Yaisa Tangwell Photography - <%= @post.title.upcase %>" />
@@ -53,12 +45,9 @@
 	<%= render "layouts/sign_in"%>
 	
 <div id="page_wrap" class="container row">
-	<%= render "layouts/alert_notification"%>
-		
-	
-	<%= render "layouts/smallheader"%>
-	
-	
+<%= render "layouts/alert_notification"%>
+<%= render "layouts/smallheader"%>
+
 	<div class="smallnav">
 	<%= render "layouts/stdnavbar" %>
 </div>

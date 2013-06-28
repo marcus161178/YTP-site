@@ -2,9 +2,10 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
-    <th>Image</th>
     <th>Post</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +13,10 @@
 
 <% @blog_images.each do |blog_image| %>
   <tr>
-    <td><%= blog_image.name %></td>
-    <td><%= blog_image.image %></td>
-    <td><%= blog_image.post_id %></td>
+    <td><%= image_tag blog_image.image_url(:small).to_s %></td>
+    <td><%= %>blog_image.name </td>
+    <td><%= blog_image.post.title %></td>
+    <td><%= blog_image.frontpage %></td>
     <td><%= link_to 'Show', blog_image %></td>
     <td><%= link_to 'Edit', edit_blog_image_path(blog_image) %></td>
     <td><%= link_to 'Destroy', blog_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,5 +24,7 @@
 <% end %>
 </table>
 
-<br />
 
+<div class="paginate">
+    <%= will_paginate @blog_images, previous_label: h("Previous"), next_label: h(" More Images...") %>
+</div>

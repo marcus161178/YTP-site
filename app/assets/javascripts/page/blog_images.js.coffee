@@ -1,5 +1,4 @@
-jQuery ->
-  $('#new_blog_image').fileupload
+jQuery -> $('#new_blog_image').fileupload
     dataType: "script"
     add: (e, data) ->
       types = /(\.|\/)(gif|jpe?g|png)$/i

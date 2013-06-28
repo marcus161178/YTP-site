@@ -1,10 +1,10 @@
 class RemoveColumnFromCategory < ActiveRecord::Migration
   def up
-    remove_column :Categories, :ancestry
+    remove_column :categories, :ancestry
     
   end
 
   def down
-    add_column :Categories, :ancestry
+    add_column :categories, :ancestry
   end
 end

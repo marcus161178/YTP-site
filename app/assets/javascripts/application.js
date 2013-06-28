@@ -12,12 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require page/contact
 //= require lightbox/lightbox
 //= require flexslider/jquery.flexslider
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require jquery.ui.datepicker
-//= require_tree ./js
-//= require_tree ./js/libs
-//= require_tree ./js/libs/ui
-//= require_tree .
+//= require best_in_place.purr

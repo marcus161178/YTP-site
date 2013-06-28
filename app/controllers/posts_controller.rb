@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   layout "bloglayout"
   
   def unpublished
-    @posts = Post.where(:published => false).page(params[:page]).per_page(6)
+    @posts = Post.where(:published => false).paginate(:page => params[:page], :per_page => 6)
     @blogimage = BlogImage.all
 
     respond_to do |format|
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
   
   def scheduled
-    @posts = Post.where(:published => true).where("published_at > ?", Time.now).page(params[:page]).per_page(6)
+    @posts = Post.where(:published => true).where("published_at > ?", Time.now).paginate(:page => params[:page], :per_page => 6)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -30,18 +30,22 @@ class PostsController < ApplicationController
   def index
     
     @page = params[:page].to_i
-     
-@recentpost = Post.where(:published => true).where("published_at <= ?", Time.now).first 
-    @posts = Post.where(:published => true).where("published_at <= ?", Time.now).where('id != ?', @recentpost.id).page(params[:page]).per_page(6)
+    if @page < 2 && params[:search].blank?
+    @recentpost = Post.published.first
+  end
+    if params[:search].blank?
+      @firstpublished = Post.published.first
+      @posts = Post.fromsecond(@firstpublished).paginate(:page => params[:page], :per_page => 6)
+    else
+      @posts = Post.search(params[:search]).paginate(:page => params[:page], :per_page => 6)
+      @search_msg = "Sorry, No wedding results match #{params[:search]}" if @posts.blank?
+    end
     
-   
-    
-    @blogimage = BlogImage.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
     end
+    
   end
 
   
@@ -52,17 +56,25 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @blog_images = @post.blog_images
     @videos = @post.videos
-    
+    @subcatz = @post.subcategorizations.sort_by{|s| s.category.name }
     # get prev
     @prev_post = Post.where(:published => true).where('published_at < ?', @post.published_at).first
-
     # get next
     @next_post = Post.where(:published => true).where('published_at > ?', @post.published_at).last
-
+    
+    if !@post.published? 
+      if current_user.blank? || !current_user.admin?
+        redirect_to weddings_path
+      end
+    else  
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
     end
+  end  
+  
+    
   end
 
   # GET /posts/new
@@ -71,7 +83,6 @@ class PostsController < ApplicationController
     @post = Post.new
     @categories = Category.all
     @subcategories = Subcategory.all
-    @post.blog_images.build
     
 
     respond_to do |format|
@@ -111,10 +122,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@post) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@post) }
       end
     end
   end

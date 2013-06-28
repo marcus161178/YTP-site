@@ -8,6 +8,7 @@ class Ability
     if user.admin?
      can :manage, :all
    else
+     can :read, Subcategory
      can :read, Post
      can :read, Category
      can :read, Video

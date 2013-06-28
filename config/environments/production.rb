@@ -72,6 +72,6 @@ GA.tracker = "UA-6898989-1"
   
   # Devise option
   config.action_mailer.default_url_options = { 
-	:host => 'thepouitree.com'
+	:host => 'www.yaisatangwell.com'
 	}
 end

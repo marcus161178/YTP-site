@@ -1,3 +1,5 @@
+<%= content_for(:title) { @post.title } %>
+
 <p id="notice"><%= notice %></p>
 
 <div id="fb-root"></div>
@@ -48,16 +50,17 @@ DRAFT POST
   <div class="progress"><div class="bar" style="width: 0%"></div></div>
 </div>
 </script>	
-	  <div class="post_body"><%= @post.body %></div>
+
+<div class="post_body"><%= @post.body %></div>
 	  
 <div class="singlepost_vendors">
 	  
- <% @post.subcategorizations.each do |subcategorization| %>
+ <% @subcatz.each do |subcategorization| %>
 
-<p>| <%= subcategorization.category.name %> : <%= link_to subcategorization.subcategory.name, subcategory_path(subcategorization.subcategory) %> |</p>
+<p>| <%= link_to subcategorization.category.name.upcase, category_path(subcategorization.category),:class => "postlink_cat" %> : <%= link_to subcategorization.subcategory.name, subcategory_path(subcategorization.subcategory) %> |</p>
 
 <% end %>
-
+<br/>
 <p>If you were a vendor involved at this wedding please <%=link_to "contact us", contact_path %><p>
 </div>
 <div class= "row" >

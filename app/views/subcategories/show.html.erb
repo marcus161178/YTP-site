@@ -1,29 +1,152 @@
+<%= content_for(:title) { @subcategory.name } %>
+
 <div class="post_category_head">
-	<% unless @posts.blank? %>
+	<% if !@posts.blank? %>
 	
-  	<h1>VIEW ALL WEDDINGS RELATED TO <%= @subcategory.name.upcase %> </h1>
-  	
+  	<h1><%= @subcategory.name.upcase %> </h1>
     
-<% else %>
-    <h1> Sorry, we do not have any weddings related to <%= @subcategory.name.upcase %>  </h1>
-    <p> Please choose another <%= link_to 'VENDOR', vendors_path %>
-    </p>    
     
     <% end %>
+
+<% if !@subcategory.vendor_images.blank? || (can? :update, @subcategory) %>
+<div id="vendor_tbutton" style="text-align: center"><%= link_to "Click here to toggle vendor information", :remote => true %>
+</div><!--vendor_tbutton-->
+
+</div><!--post_category_head-->
+<div id="toggle_vendor" >
+
+<div class="row">
+
+  <div id="vendor_images" class="push_one four columns vendor_profile_pic">
+  <% unless @subcategory.vendor_images.blank? %>
+  <%= image_tag @subcategory.vendor_images.last.portfolio_url.to_s  %>
+  <%= link_to "remove", @subcategory.vendor_images.last, :confirm => 'Are you sure?', :method => :delete if (can? :update, @subcategory) %>
+  <% end %>  
+  </div><!--vendor_images-->
   
+<div class="push_one five columns vendor_profile_fields">
+<ul>
+<li>Description: <%= best_in_place_if (can? :update, @subcategory),  @subcategory, :description, :type => :textarea %></li>
+<li>Phone: <%= best_in_place_if (can? :update, @subcategory), @subcategory, :phone_number, :type => :input %></li>
+<% if can? :update, @subcategory %>
+<li>Email: <%= best_in_place_if (can? :update, @subcategory), @subcategory, :email, :type => :input %></li>
+<% end %>
+<% if can? :update, @subcategory %>
+<li>Website: <%= best_in_place @subcategory, :website, :type => :input %></li>
+<% else %>
+<li>Website: <%= link_to @subcategory.website.html_safe, "http://#{@subcategory.website.to_s.html_safe}" %></li>
+<% end %>
+<li id="mail_tbutton"><%= link_to "Send Email to Vendor", :remote => true %></li>
+</ul>
+<div id="toggle_mail" class="row">
+<%= form_for @message, :url => vendorcontact_path, :honeypot => true do |c| %>
+<ul>
+  <li class="field">
+  	<%= c.label :name, :class => "inline", :for => "name"%>
+  	<%= c.text_field :name, :class =>"wide text input",:size => "30", :id => "name", :type => "text", :placeholder => "name" %>
+  </li>
+<li class="field">
+	<%= c.label "Email", :class => "inline", :for => "email"%>
+	<%= c.text_field :email, :class =>"wide text input",:size => "30", :id => "email", :type => "text", :placeholder => "email" %>
+</li>
 
-	
-	<% if @subcategory.url? %>
-    <p>To see more detailed information about this vendor <%link_to "click here", @subcategory %>  </p> 
+<li class="field">
+	<%= c.label "Wedding Date", :class => "inline", :for => "wedding_date"%>
+	<%= c.text_field :wedding_date, :class =>"narrow text input", :id => "wedding_date", :type => "text", :placeholder => "date" %>
+
+</li>
+<li class="field">
+	<%= c.label "Message", :class => "inline", :for => "message"%>
+	<%= c.text_area :body, :class =>"wide text area", :id => "message", :type => "text", :placeholder => "message" %>
+</li>
+</ul>
+<%= c.hidden_field :subcategory_id, :value => @subcategory.id %><br />
+
+<div class="contact_btn">
+ 	 	<%= c.submit "Send Message" %>
+    </div><!--contact_btn-->
     <% end %>
+    
+  </div><!--toggle_mail-->
+
+</div><!--vendor_profile_fields-->
+</div><!--row-->
+</div><!--toggle_vendor-->
+<% end %>
+
+
+<% if can? :update, @subcategory %>
+  <div class="row">
+  <%= form_for VendorImage.new , :html => {:multipart => true }   do |f| %>
+  <div class="field">
+    <%= f.hidden_field :subcategory_id, :value => @subcategory.id %><br />
+  </div><!--field-->
+
+  <div class="field">
+  	<%= label_tag "add photos"%>
+    <%= file_field_tag(:image , multiple: true, name: "vendor_image[portfolio]") %><br />
+  </div><!--field-->
+  <% end %>
+  
+  <script id="template-upload" type="text/x-tmpl">
+  <div class="upload">
+    {%=o.name%}
+    <div class="progress"><div class="bar" style="width: 0%"></div></div>
+  </div><!--upload-->
+  </script>	
+  </div><!--row-->
+  
+  <% end %>
 
 
 
+<script>
+$(document).ready(function() {
+  var par = $("#toggle_vendor");
+  $(par).hide();
+  
+});
+
+  $("#vendor_tbutton").click(function () {
+      $("#toggle_vendor").slideToggle("slow");
+    });
+</script>
+
+
+<script>
+$(document).ready(function() {
+  var par = $("#toggle_mail");
+  $(par).hide();
+  
+});
+
+  $("#mail_tbutton").click(function () {
+      $("#toggle_mail").slideToggle("slow");
+    });
+</script>
+
+
+
+<div class=row><div class="line push_one ten columns"></div></div>
+
+
+<div class="small_posts_vendor row">
+<div class="heading"
+<% if @posts.blank? %>
+<h2>NO WEDDINGS RELATED TO <%= @subcategory.name.upcase %></h2>
+<p>please try another <%= link_to "Vendor", vendors_path  %></p>
 </div>
-
-
-
-<div class="small_posts_div row">
+<% else %>
+<h2>WEDDINGS RELATED TO <%= @subcategory.name.upcase %></h2>
+<p>This vendor is listed in
+<% @subcategory.categories.each do |category| %>
+  <%= link_to category.name.pluralize, category_path(category) %>
+  <% if @subcategory.categories.count > 1 %>
+  <%= ", " unless category == @subcategory.categories[(@subcategory.categories.count - 2)] || category == @subcategory.categories.last %><%= " and " if category == @subcategory.categories[(@subcategory.categories.count - 2)] %>
+  <% end %>
+  <% end %>
+ </p>     
+</div>
   <div class="blogbadges four columns nopin">
         <div class="row agwpja"> <%= link_to(image_tag("assoc/agwpja.png"), "http://www.agwpja.com") %></div>
         <div class="row wpja"><%= link_to(image_tag("assoc/wpja.png"), "http://www.wpja.com")%></div>
@@ -36,6 +159,7 @@
 	<% @posts.uniq.each_slice(2) do |slice| %>
 		
 		<div class="row">
+    
 			<% slice.each do |post| %>
 			
 				<div class="smallpost six columns">
@@ -64,8 +188,10 @@
 
   
 	</div><!--eight columns-->
+  
   </div>
   
+  <% end %>
 	
   <div class="paginate">
   <% if can? :update, @posts %>
@@ -74,7 +200,9 @@
   <% end %>
   <%= will_paginate @posts, previous_label: h("Previous"), next_label: h(" More Weddings...") %>
   <% if !@posts.blank?%>
-  <%= link_to 'Back to Vendors Main', vendors_path %>
+  <%= link_to 'Vendor Categories', vendors_path %> | 
+  <%= link_to "Back", :back %>
+  
   <% end %>
   </div>
 

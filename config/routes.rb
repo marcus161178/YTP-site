@@ -2,6 +2,10 @@ Proofing::Application.routes.draw do
 
 
 
+  resources :vendor_images
+
+  match 'vendorcontact' => 'contact#vendorcreate', :as=> 'vendorcontact', :via => :post
+
   resources :subcategories, :path => "vendor"
 
 
@@ -65,7 +69,6 @@ Proofing::Application.routes.draw do
   match '/aboutus', to: 'custom#aboutus'
   match 'contact' => 'contact#new', :as => 'contact', :via => :get
   match 'contact' => 'contact#create', :as => 'contact', :via => :post
-
 
   get '/clienthome', to: 'custom#clienthome'
   

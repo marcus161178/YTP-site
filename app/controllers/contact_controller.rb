@@ -16,5 +16,22 @@
         render :new
       end
     end
+    
+    def vendorcreate
+      @message = Message.new(params[:message])
+      @subcategory = Subcategory.find(@message.subcategory_id)
+
+    
+      if @message.valid?
+        ContactMailer.vendor_message(@message,@subcategory).deliver
+        ContactMailer.ytp_message(@message,@subcategory).deliver
+        ContactMailer.client_message(@message,@subcategory).deliver
+        redirect_to(subcategory_path(@subcategory), :notice => "Message was successfully sent.")
+      else
+        flash.now.alert = "Please fill all fields."
+        redirect_to(subcategory_path(@subcategory))
+      end
+    end
+    
   end
 
